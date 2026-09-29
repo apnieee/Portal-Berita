@@ -1,66 +1,132 @@
 @extends('layouts.app')
-@section('title', 'KWave - Update K-Pop Terkini')
+
+@section('title', 'KWave - Portal Berita K-Pop')
 
 @section('content')
 
+//featured news
 @if($banners->count())
-<div id="bannerCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
-    <div class="carousel-inner rounded">
-        @foreach($banners as $i => $banner)
-        <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
-            <img src="{{ asset('storage/' . $banner->gambar) }}" class="d-block w-100" style="max-height:350px;object-fit:cover;" alt="{{ $banner->judul }}">
-        </div>
-        @endforeach
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
-    </button>
-</div>
-@endif
+    <div id="bannerCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+        <div class="carousel-inner rounded-4 overflow-hidden">
+            @foreach($banners as $i => $banner)
+                <div class="carousel-item {{ $i === 0 ? 'active' : '' }}">
+                    <img src="{{ asset('storage/' . $banner->gambar) }}"
+                         class="d-block w-100"
+                         style="height:380px;object-fit:cover;"
+                         alt="{{ $banner->berita->judul ?? 'KWave Featured News' }}">
 
-<div class="row mb-4">
-    <div class="col-12">
-        <div class="d-flex flex-wrap gap-2">
-            <a href="{{ route('home') }}" class="btn btn-sm {{ !$idKategori ? 'btn-pink' : 'btn-outline-light' }}">Semua</a>
-            @foreach($kategoris as $kat)
-                <a href="{{ route('home', ['kategori' => $kat->id_kategori]) }}"
-                   class="btn btn-sm {{ $idKategori == $kat->id_kategori ? 'btn-pink' : 'btn-outline-light' }}">
-                    {{ $kat->nama_kategori }}
-                </a>
+                    <div class="carousel-caption text-start">
+                        <span class="badge bg-dark mb-2">Featured</span>
+                        <h2 class="fw-bold">{{ $banner->berita->judul ?? 'Berita K-Pop Terkini' }}</h2>
+
+                        @if($banner->id_berita)
+                            <a href="{{ route('berita.show', $banner->id_berita) }}"
+                               class="btn btn-light btn-sm">
+                                Baca Selengkapnya
+                            </a>
+                        @endif
+                    </div>
+                </div>
             @endforeach
         </div>
+
+        @if($banners->count() > 1)
+            <button class="carousel-control-prev" type="button"
+                    data-bs-target="#bannerCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+
+            <button class="carousel-control-next" type="button"
+                    data-bs-target="#bannerCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        @endif
+    </div>
+@else
+    <div class="p-5 mb-5 rounded-4 text-center"
+         style="background:linear-gradient(135deg,#17121f,#8b5cf6);color:white;">
+        <span class="badge bg-light text-dark mb-3">KWAVE</span>
+        <h1 class="fw-bold">Latest K-Pop Updates</h1>
+        <p class="mb-0">Berita terbaru seputar idol, musik, comeback, dan dunia K-Pop.</p>
+    </div>
+@endif
+
+//category
+<div class="mb-5">
+    <h2 class="section-title">Explore K-Pop</h2>
+
+    <div class="category-menu">
+        <a href="{{ route('home') }}"
+           class="category-btn {{ !$idKategori ? 'active' : '' }}">
+            Semua
+        </a>
+
+        @foreach($kategoris as $kat)
+            <a href="{{ route('home', ['kategori' => $kat->id_kategori]) }}"
+               class="category-btn {{ $idKategori == $kat->id_kategori ? 'active' : '' }}">
+                {{ $kat->nama_kategori }}
+            </a>
+        @endforeach
     </div>
 </div>
 
+//search results
 @if($keyword)
-    <p>Hasil pencarian untuk: <strong>"{{ $keyword }}"</strong></p>
+    <div class="mb-4">
+        <p class="text-muted mb-1">Hasil pencarian untuk:</p>
+        <h3 class="fw-bold">"{{ $keyword }}"</h3>
+    </div>
 @endif
 
-<div class="row g-4">
-    @forelse($beritas as $berita)
-        <div class="col-md-4">
-            <div class="card h-100">
-                @if($berita->gambar)
-                    <img src="{{ asset('storage/' . $berita->gambar) }}" class="card-img-top" style="height:180px;object-fit:cover;">
-                @endif
-                <div class="card-body d-flex flex-column">
-                    <span class="badge bg-secondary mb-2 align-self-start">{{ $berita->kategori->nama_kategori }}</span>
-                    <h5 class="card-title"><a href="{{ route('berita.show', $berita->id_berita) }}">{{ $berita->judul }}</a></h5>
-                    <p class="card-text small text-muted mt-auto">
-                        {{ $berita->tanggal?->translatedFormat('d M Y') }} &middot; {{ $berita->views }} views
-                    </p>
+//latest news
+<div class="mb-5">
+    <h2 class="section-title">Latest News</h2>
+
+    <div class="row g-4">
+        @forelse($beritas as $berita)
+            <div class="col-md-6 col-lg-4">
+                <article class="news-card">
+                    @if($berita->gambar)
+                        <img src="{{ asset('storage/' . $berita->gambar) }}"
+                             alt="{{ $berita->judul }}">
+                    @else
+                        <div style="height:210px;background:linear-gradient(135deg,#17121f,#8b5cf6);display:flex;align-items:center;justify-content:center;color:white;font-size:24px;font-weight:bold;">
+                            KWave
+                        </div>
+                    @endif
+
+                    <div class="news-card-body">
+                        <span class="news-category">
+                            {{ $berita->kategori->nama_kategori }}
+                        </span>
+
+                        <h3>
+                            <a href="{{ route('berita.show', $berita->id_berita) }}"
+                               class="news-title">
+                                {{ $berita->judul }}
+                            </a>
+                        </h3>
+
+                        <div class="news-meta">
+                            {{ $berita->tanggal?->translatedFormat('d M Y') }}
+                            · {{ $berita->views }} views
+                        </div>
+                    </div>
+                </article>
+            </div>
+        @empty
+            <div class="col-12">
+                <div class="bg-white rounded-4 p-5 text-center">
+                    <h4>Belum ada berita</h4>
+                    <p class="text-muted mb-0">Berita K-Pop akan muncul di sini.</p>
                 </div>
             </div>
-        </div>
-    @empty
-        <p>Belum ada berita.</p>
-    @endforelse
+        @endforelse
+    </div>
 </div>
 
-<div class="mt-4">
+//pagination
+<div class="d-flex justify-content-center">
     {{ $beritas->links() }}
 </div>
 
