@@ -23,7 +23,7 @@ class BeritaPublicController extends Controller
             ->withQueryString();
 
         $kategoris = Kategori::orderBy('nama_kategori')->get();
-        $banners = Banner::where('status', 'aktif')->orderBy('id_banner', 'desc')->get();
+        $banners = Banner::where('status', 1)->orderBy('id_banner', 'desc')->get();
         $featured = Berita::published()->where('featured', true)->latest('tanggal')->take(5)->get();
 
         return view('berita.index', compact('beritas', 'kategoris', 'banners', 'featured', 'keyword', 'idKategori'));
