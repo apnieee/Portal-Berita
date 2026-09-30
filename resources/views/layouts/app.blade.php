@@ -310,7 +310,7 @@
                 @auth
                     @if(auth()->user()->role === 'admin')
                         <a
-                            href="{{ route('admin.dashboard') }}"
+                            href="{{ url('/admin') }}"
                             class="btn-login me-2">
                             Admin
                         </a>
