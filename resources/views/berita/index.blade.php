@@ -4,7 +4,6 @@
 
 @section('content')
 
-//featured news
 @if($banners->count())
     <div id="bannerCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
         <div class="carousel-inner rounded-4 overflow-hidden">
@@ -51,7 +50,6 @@
     </div>
 @endif
 
-//category
 <div class="mb-5">
     <h2 class="section-title">Explore K-Pop</h2>
 
@@ -70,7 +68,6 @@
     </div>
 </div>
 
-//search results
 @if($keyword)
     <div class="mb-4">
         <p class="text-muted mb-1">Hasil pencarian untuk:</p>
@@ -78,7 +75,6 @@
     </div>
 @endif
 
-//latest news
 <div class="mb-5">
     <h2 class="section-title">Latest News</h2>
 
@@ -125,7 +121,6 @@
     </div>
 </div>
 
-//pagination
 <div class="d-flex justify-content-center">
     {{ $beritas->links() }}
 </div>
