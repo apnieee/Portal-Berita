@@ -18,7 +18,7 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        // Validasi input
+        // validasi input
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required', 'string'],
@@ -44,10 +44,10 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        // Validasi input
+        // validasi input
         $validated = $request->validate([
             'nama' => ['required', 'string', 'max:100'],
-            'email' => ['required', 'string', 'email', 'max:100', 'unique:users,email'],
+            'email' => ['required', 'string', 'email', 'max:100', 'unique:user,email'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
