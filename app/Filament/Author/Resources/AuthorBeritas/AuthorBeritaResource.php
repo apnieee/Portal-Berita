@@ -7,7 +7,7 @@ use App\Filament\Author\Resources\AuthorBeritas\Pages\EditAuthorBerita;
 use App\Filament\Author\Resources\AuthorBeritas\Pages\ListAuthorBeritas;
 use App\Filament\Author\Resources\AuthorBeritas\Schemas\AuthorBeritaForm;
 use App\Filament\Author\Resources\AuthorBeritas\Tables\AuthorBeritasTable;
-use App\Models\AuthorBerita;
+use App\Models\Berita;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthorBeritaResource extends Resource
 {
-    protected static ?string $model = AuthorBerita::class;
+    protected static ?string $model = Berita::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
