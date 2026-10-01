@@ -34,6 +34,7 @@ class UserForm
                     ->label('Role')
                     ->options([
                         'admin' => 'Admin',
+                        'author' => 'Author',
                         'user' => 'User',
                     ])
                     ->default('user')
