@@ -21,7 +21,7 @@ class BeritaResource extends Resource
     protected static ?string $modelLabel = 'Berita';
     protected static ?string $pluralModelLabel = 'Berita';
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedNewspaper;
     protected static ?string $recordTitleAttribute = 'judul';
 
     public static function form(Schema $schema): Schema

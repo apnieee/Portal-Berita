@@ -21,7 +21,7 @@ class BannerResource extends Resource
     protected static ?string $modelLabel = 'Banner';
     protected static ?string $pluralModelLabel = 'Banner';
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedPhoto;
 
     protected static ?string $recordTitleAttribute = 'id_banner';
 
