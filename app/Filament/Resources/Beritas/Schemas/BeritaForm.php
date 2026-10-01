@@ -25,9 +25,13 @@ class BeritaForm
                     ->relationship('user', 'nama')
                     ->required(),
                 TextInput::make('judul')
-                    ->required(),
-                Textarea::make('isi')
+                    ->label('Judul')
                     ->required()
+                    ->columnSpanFull(),
+                Textarea::make('isi')
+                    ->label('Isi')
+                    ->required()
+                    ->rows(12)
                     ->columnSpanFull(),
                 FileUpload::make('gambar')
                     ->image()
