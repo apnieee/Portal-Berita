@@ -21,6 +21,12 @@ class AuthorBeritaResource extends Resource
 {
     protected static ?string $model = Berita::class;
 
+    protected static ?string $modelLabel = 'Berita';
+
+    protected static ?string $pluralModelLabel = 'Berita Saya';
+
+    protected static ?string $navigationLabel = 'Berita Saya';
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     protected static ?string $recordTitleAttribute = 'judul';
