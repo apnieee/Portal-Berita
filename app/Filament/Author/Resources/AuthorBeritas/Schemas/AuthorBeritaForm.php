@@ -5,7 +5,7 @@ namespace App\Filament\Author\Resources\AuthorBeritas\Schemas;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
@@ -29,11 +29,27 @@ class AuthorBeritaForm
                     ->maxLength(255)
                     ->columnSpanFull(),
 
-                Textarea::make('isi')
+                RichEditor::make('isi')
                     ->label('Isi Berita')
                     ->required()
-                    ->rows(12)
-                    ->columnSpanFull(),
+                    ->columnSpanFull()
+                    ->toolbarButtons([
+                        'bold',
+                        'italic',
+                        'underline',
+                        'strike',
+                        'h2',
+                        'h3',
+                        'bulletList',
+                        'orderedList',
+                        'blockquote',
+                        'link',
+                        'attachFiles',
+                        'undo',
+                        'redo',
+                    ])
+                    ->fileAttachmentsDisk('public')
+                    ->fileAttachmentsDirectory('berita/content'),
 
                 FileUpload::make('gambar')
                     ->label('Gambar')
