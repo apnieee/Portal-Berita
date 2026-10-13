@@ -84,7 +84,107 @@
                     Simpan Perubahan
                 </button>
             </form>
+
+            <hr class="my-4">
+
+            <h5 class="fw-bold mb-3">Keamanan Akun</h5>
+            <p class="text-muted small">
+                Gunakan kata sandi yang kuat dan jangan bagikan kepada orang lain.
+            </p>
+
+            @if (session('password_success'))
+                <div class="alert alert-success">
+                    {{ session('password_success') }}
+                </div>
+            @endif
+
+            <form method="POST" action="{{ route('profile.password.update') }}">
+                @csrf
+                @method('PUT')
+
+                <div class="mb-3">
+                    <label for="current_password" class="form-label">
+                        Kata Sandi Lama
+                    </label>
+                    <input
+                        type="password"
+                        id="current_password"
+                        name="current_password"
+                        class="form-control"
+                        autocomplete="current-password"
+                        required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password" class="form-label">
+                        Kata Sandi Baru
+                    </label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        class="form-control"
+                        minlength="8"
+                        autocomplete="new-password"
+                        required>
+                    <small class="text-muted">Minimal 8 karakter.</small>
+                </div>
+
+                <div class="mb-4">
+                    <label for="password_confirmation" class="form-label">
+                        Konfirmasi Kata Sandi Baru
+                    </label>
+                    <input
+                        type="password"
+                        id="password_confirmation"
+                        name="password_confirmation"
+                        class="form-control"
+                        minlength="8"
+                        autocomplete="new-password"
+                        required>
+                </div>
+
+                <button
+                    type="submit"
+                    class="btn text-white w-100"
+                    style="background: #ff3f9f;">
+                    Ubah Kata Sandi
+                </button>
+
+                <div class="input-group">
+                <input
+                    type="password"
+                    id="current_password"
+                    name="current_password"
+                    class="form-control"
+                    autocomplete="current-password"
+                    required>
+
+                <button
+                    class="btn btn-outline-secondary toggle-password"
+                    type="button"
+                    data-target="current_password"
+                    aria-label="Tampilkan kata sandi">
+                    Lihat
+                </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+<script>
+document.querySelectorAll('.toggle-password').forEach(button => {
+    button.addEventListener('click', () => {
+        const input = document.getElementById(button.dataset.target);
+        const isHidden = input.type === 'password';
+
+        input.type = isHidden ? 'text' : 'password';
+        button.textContent = isHidden ? 'Sembunyikan' : 'Lihat';
+        button.setAttribute(
+            'aria-label',
+            isHidden ? 'Sembunyikan kata sandi' : 'Tampilkan kata sandi'
+        );
+    });
+});
+</script>
 @endsection

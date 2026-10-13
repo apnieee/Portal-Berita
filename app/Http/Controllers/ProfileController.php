@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class ProfileController extends Controller
@@ -51,5 +52,26 @@ class ProfileController extends Controller
         return redirect()
             ->route('profile.edit')
             ->with('success', 'Profil berhasil diperbarui!');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $validated = $request->validate([
+            'current_password' => ['required', 'current_password'],
+            'password' => ['required', 'string', 'min:8', 'confirmed', 'different:current_password'],
+        ], [
+            'current_password.current_password' => 'Kata sandi lama tidak sesuai.',
+            'password.min' => 'Kata sandi baru minimal 8 karakter.',
+            'password.confirmed' => 'Konfirmasi kata sandi baru tidak cocok.',
+            'password.different' => 'Kata sandi baru harus berbeda dari kata sandi lama.',
+        ]);
+
+        $request->user()->update([
+            'password' => Hash::make($validated['password']),
+        ]);
+
+        return redirect()
+            ->route('profile.edit')
+            ->with('password_success', 'Kata sandi berhasil diperbarui!');
     }
 }
