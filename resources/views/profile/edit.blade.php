@@ -106,27 +106,43 @@
                     <label for="current_password" class="form-label">
                         Kata Sandi Lama
                     </label>
-                    <input
-                        type="password"
-                        id="current_password"
-                        name="current_password"
-                        class="form-control"
-                        autocomplete="current-password"
-                        required>
+                    <div class="input-group">
+                        <input
+                            type="password"
+                            id="current_password"
+                            name="current_password"
+                            class="form-control"
+                            autocomplete="current-password"
+                            required>
+                        <button type="button"
+                                class="btn btn-outline-secondary toggle-password"
+                                data-target="current_password"
+                                aria-label="Tampilkan kata sandi">
+                            <span class="eye-open">◉</span>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="mb-3">
                     <label for="password" class="form-label">
                         Kata Sandi Baru
                     </label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        class="form-control"
-                        minlength="8"
-                        autocomplete="new-password"
-                        required>
+                    <div class="input-group">
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            class="form-control"
+                            minlength="8"
+                            autocomplete="new-password"
+                            required>
+                        <button type="button"
+                                class="btn btn-outline-secondary toggle-password"
+                                data-target="password"
+                                aria-label="Tampilkan kata sandi">
+                            <span class="eye-open">◉</span>
+                        </button>
+                    </div>
                     <small class="text-muted">Minimal 8 karakter.</small>
                 </div>
 
@@ -134,14 +150,22 @@
                     <label for="password_confirmation" class="form-label">
                         Konfirmasi Kata Sandi Baru
                     </label>
-                    <input
-                        type="password"
-                        id="password_confirmation"
-                        name="password_confirmation"
-                        class="form-control"
-                        minlength="8"
-                        autocomplete="new-password"
-                        required>
+                    <div class="input-group">
+                        <input
+                            type="password"
+                            id="password_confirmation"
+                            name="password_confirmation"
+                            class="form-control"
+                            minlength="8"
+                            autocomplete="new-password"
+                            required>
+                        <button type="button"
+                                class="btn btn-outline-secondary toggle-password"
+                                data-target="password_confirmation"
+                                aria-label="Tampilkan kata sandi">
+                            <span class="eye-open">◉</span>
+                        </button>
+                    </div>
                 </div>
 
                 <button
@@ -150,24 +174,6 @@
                     style="background: #ff3f9f;">
                     Ubah Kata Sandi
                 </button>
-
-                <div class="input-group">
-                <input
-                    type="password"
-                    id="current_password"
-                    name="current_password"
-                    class="form-control"
-                    autocomplete="current-password"
-                    required>
-
-                <button
-                    class="btn btn-outline-secondary toggle-password"
-                    type="button"
-                    data-target="current_password"
-                    aria-label="Tampilkan kata sandi">
-                    Lihat
-                </button>
-                </div>
             </form>
         </div>
     </div>
@@ -176,13 +182,13 @@
 document.querySelectorAll('.toggle-password').forEach(button => {
     button.addEventListener('click', () => {
         const input = document.getElementById(button.dataset.target);
-        const isHidden = input.type === 'password';
+        const visible = input.type === 'password';
 
-        input.type = isHidden ? 'text' : 'password';
-        button.textContent = isHidden ? 'Sembunyikan' : 'Lihat';
+        input.type = visible ? 'text' : 'password';
+        button.textContent = visible ? '⊘' : '◉';
         button.setAttribute(
             'aria-label',
-            isHidden ? 'Sembunyikan kata sandi' : 'Tampilkan kata sandi'
+            visible ? 'Sembunyikan kata sandi' : 'Tampilkan kata sandi'
         );
     });
 });
