@@ -309,10 +309,16 @@
 
                 @auth
                     @if(auth()->user()->role === 'admin')
-                        <a
-                            href="{{ url('/admin') }}"
-                            class="btn-login me-2">
+                        <a href="{{ url('/admin') }}" class="btn-login me-2">
                             Admin
+                        </a>
+                    @elseif(auth()->user()->role === 'author')
+                        <a href="{{ url('/author') }}" class="btn-login me-2">
+                            Dashboard Author
+                        </a>
+                    @else
+                        <a href="{{ route('profile.edit') }}" class="btn-login me-2">
+                            Profil
                         </a>
                     @endif
 
@@ -328,11 +334,8 @@
                             Logout
                         </button>
                     </form>
-
                 @else
-                    <a
-                        href="{{ route('login') }}"
-                        class="btn-login">
+                    <a href="{{ route('login') }}" class="btn-login">
                         Login
                     </a>
                 @endauth
