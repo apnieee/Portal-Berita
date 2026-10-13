@@ -23,19 +23,45 @@
 
     <div class="card border-0 shadow-sm rounded-4">
         <div class="card-body p-4">
-            <div class="text-center mb-4">
-                <div class="rounded-circle mx-auto d-flex align-items-center justify-content-center"
-                     style="width: 80px; height: 80px; background: #fce7f3; color: #ff3f9f; font-size: 32px; font-weight: bold;">
+        <div class="text-center mb-4">
+            @if ($user->foto_profil)
+                <img
+                    src="{{ asset('storage/' . $user->foto_profil) }}"
+                    alt="Foto profil"
+                    class="rounded-circle mb-3"
+                    width="100"
+                    height="100"
+                    style="object-fit: cover;">
+            @else
+                <div
+                    class="rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center"
+                    style="width: 100px; height: 100px; background: #fce7f3; color: #ff3f9f; font-size: 32px; font-weight: bold;">
                     {{ strtoupper(substr($user->nama, 0, 1)) }}
                 </div>
+            @endif
 
-                <h4 class="mt-3">{{ $user->nama }}</h4>
-                <p class="text-muted">{{ $user->email }}</p>
-            </div>
+            <h4>{{ $user->nama }}</h4>
+            <p class="text-muted">{{ $user->email }}</p>
+        </div>
 
-            <form method="POST" action="{{ route('profile.update') }}">
+                <form method="POST"
+                    action="{{ route('profile.update') }}"
+                    enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
+                <div class="mb-4">
+                    <label for="foto_profil" class="form-label">Ganti Foto Profil</label>
+                    <input
+                        type="file"
+                        id="foto_profil"
+                        name="foto_profil"
+                        class="form-control"
+                        accept=".jpg,.jpeg,.png,.webp">
+
+                    <small class="text-muted">
+                        Format JPG, PNG, atau WebP. Maksimal 2 MB.
+                    </small>
+                </div>
 
                 <div class="mb-3">
                     <label for="nama" class="form-label">Nama</label>
