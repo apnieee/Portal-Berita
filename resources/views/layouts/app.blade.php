@@ -98,6 +98,39 @@
             color: white;
         }
 
+        .profile-avatar {
+            width: 42px;
+            height: 42px;
+            padding: 0;
+            border: 2px solid #f3d9e8;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #fce7f3;
+            color: #ff3f9f;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-avatar:hover {
+            border-color: #ff3f9f;
+            box-shadow: 0 0 0 3px rgba(255, 63, 159, 0.12);
+        }
+
+        .profile-avatar:focus-visible {
+            outline: 2px solid #ff3f9f;
+            outline-offset: 3px;
+        }
+
         main {
             min-height: 75vh;
         }
@@ -307,38 +340,69 @@
                     </button>
                 </form>
 
-                @auth
-                    @if(auth()->user()->role === 'admin')
-                        <a href="{{ url('/admin') }}" class="btn-login me-2">
-                            Admin
-                        </a>
-                    @elseif(auth()->user()->role === 'author')
-                        <a href="{{ url('/author') }}" class="btn-login me-2">
-                            Dashboard Author
-                        </a>
-                    @else
-                        <a href="{{ route('profile.edit') }}" class="btn-login me-2">
-                            Profil
-                        </a>
-                    @endif
-
-                    <form
-                        method="POST"
-                        action="{{ route('logout') }}"
-                        class="d-inline">
-                        @csrf
-
-                        <button
-                            type="submit"
-                            class="btn-login bg-transparent">
-                            Logout
-                        </button>
-                    </form>
-                @else
-                    <a href="{{ route('login') }}" class="btn-login">
-                        Login
+            @auth
+                @if(auth()->user()->role === 'admin')
+                    <a href="{{ url('/admin') }}" class="btn-login me-2">
+                        Admin
                     </a>
-                @endauth
+                @elseif(auth()->user()->role === 'author')
+                    <a href="{{ url('/author') }}" class="btn-login me-2">
+                        Dashboard Author
+                    </a>
+                @else
+                    <div class="dropdown me-2">
+                        <button
+                            class="profile-avatar"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            aria-label="Buka menu profil">
+
+                            @if(auth()->user()->foto_profil)
+                                <img
+                                    src="{{ asset('storage/' . auth()->user()->foto_profil) }}"
+                                    alt="Foto profil">
+                            @else
+                                <span>
+                                    {{ strtoupper(substr(auth()->user()->nama, 0, 1)) }}
+                                </span>
+                            @endif
+                        </button>
+
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-4 p-2">
+                            <li class="px-3 py-2">
+                                <strong>{{ auth()->user()->nama }}</strong>
+                                <div class="small text-muted">
+                                    {{ auth()->user()->email }}
+                                </div>
+                            </li>
+
+                            <li><hr class="dropdown-divider"></li>
+
+                            <li>
+                                <a class="dropdown-item rounded-3"
+                                href="{{ route('profile.edit') }}">
+                                    Edit Profil
+                                </a>
+                            </li>
+
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit"
+                                            class="dropdown-item rounded-3 text-danger">
+                                        Logout
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                @endif
+            @else
+                <a href="{{ route('login') }}" class="btn-login">
+                    Login Sekarang
+                </a>
+            @endauth
             </div>
         </div>
     </nav>
