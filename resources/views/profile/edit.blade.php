@@ -116,6 +116,97 @@
 
             </form>
 
+            
+            <hr class="my-4">
+
+            <h5 class="fw-bold mb-2">Gabung Jadi Author</h5>
+
+            <p class="text-muted">
+                Punya minat menulis berita K-Pop? Ajukan diri menjadi author
+                dan tunggu persetujuan dari admin KWave.
+            </p>
+
+            @if ($user->role === 'user')
+
+                @if (!$authorApplication)
+
+                    <form
+                        method="POST"
+                        action="{{ route('author-application.store') }}">
+
+                        @csrf
+
+                        <div class="mb-3">
+                            <label for="alasan" class="form-label">
+                                Alasan ingin menjadi author
+                            </label>
+
+                            <textarea
+                                id="alasan"
+                                name="alasan"
+                                class="form-control"
+                                rows="4"
+                                minlength="20"
+                                maxlength="2000"
+                                placeholder="Ceritakan alasan dan minatmu menulis berita K-Pop..."
+                                required>{{ old('alasan') }}</textarea>
+
+                            <small class="text-muted">
+                                Minimal 20 karakter, maksimal 2.000 karakter.
+                            </small>
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="btn text-white w-100"
+                            style="background: #ff3f9f;">
+                            Kirim Pengajuan
+                        </button>
+                    </form>
+
+                @elseif ($authorApplication->status === 'pending')
+
+                    <div class="alert alert-warning mb-0">
+                        <strong>Pengajuan sedang ditinjau.</strong>
+                        <p class="mb-0 mt-1">
+                            Terima kasih sudah mendaftar. Tunggu keputusan admin KWave, ya.
+                        </p>
+                    </div>
+
+                @elseif ($authorApplication->status === 'rejected')
+
+                    <div class="alert alert-danger">
+                        <strong>Pengajuan belum disetujui.</strong>
+
+                        @if ($authorApplication->catatan_admin)
+                            <p class="mb-0 mt-1">
+                                Catatan admin: {{ $authorApplication->catatan_admin }}
+                            </p>
+                        @endif
+                    </div>
+
+                @elseif ($authorApplication->status === 'approved')
+
+                    <div class="alert alert-success mb-0">
+                        Pengajuanmu telah disetujui. Selamat bergabung sebagai author KWave!
+                    </div>
+
+                @endif
+
+            @elseif ($user->role === 'author')
+
+                <div class="alert alert-success mb-0">
+                    Kamu sudah menjadi author KWave.
+                </div>
+
+            @elseif ($user->role === 'admin')
+
+                <div class="alert alert-info mb-0">
+                    Kamu masuk sebagai admin KWave.
+                </div>
+
+            @endif
+
             <hr class="my-4">
 
             <h5 class="fw-bold mb-3">Keamanan Akun</h5>

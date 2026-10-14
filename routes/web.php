@@ -43,6 +43,5 @@ Route::middleware('auth')->group(function () {
     Route::put('/profil', [ProfileController::class, 'update'])->name('profile.update');
     Route::put('/profil/password', [ProfileController::class, 'updatePassword'])->name('profile.password.update');
 
-    Route::post('/pengajuan-author', [AuthorApplicationController::class, 'store'])
-    ->name('author-application.store');
+    Route::post('/pengajuan-author', [AuthorApplicationController::class, 'store'])->name('author-application.store');
 });

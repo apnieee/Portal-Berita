@@ -6,13 +6,22 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use App\Models\AuthorApplication;
 
 class ProfileController extends Controller
 {
     public function edit()
     {
+        $user = auth()->user();
+
+        $authorApplication = AuthorApplication::where(
+            'id_user',
+            $user->id_user
+        )->first();
+
         return view('profile.edit', [
-            'user' => auth()->user(),
+            'user' => $user,
+            'authorApplication' => $authorApplication,
         ]);
     }
 
