@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Banner;
 use App\Models\Berita;
 use App\Models\Kategori;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BeritaPublicController extends Controller
@@ -25,8 +26,9 @@ class BeritaPublicController extends Controller
         $kategoris = Kategori::orderBy('nama_kategori')->get();
         $banners = Banner::where('status', 1)->orderBy('id_banner', 'desc')->get();
         $featured = Berita::published()->where('featured', true)->latest('tanggal')->take(5)->get();
+        $featuredAuthors = User::where('role', 'author')->where('tampil_di_beranda', true)->orderBy('nama')->get();
 
-        return view('berita.index', compact('beritas', 'kategoris', 'banners', 'featured', 'keyword', 'idKategori'));
+        return view('berita.index', compact('beritas', 'kategoris', 'banners', 'featured','featuredAuthors', 'keyword', 'idKategori'));
     }
 
     public function show(Berita $berita)
