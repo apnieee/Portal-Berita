@@ -25,7 +25,7 @@ Route::post('/register', [AuthController::class, 'register'])->name('register.pr
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //admin
-Route::middleware('auth')->prefix('admin')->name('admin.')->group(function () {
+Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('kategori', KategoriController::class);
