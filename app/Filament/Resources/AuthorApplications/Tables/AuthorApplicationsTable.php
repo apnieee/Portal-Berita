@@ -4,9 +4,6 @@ namespace App\Filament\Resources\AuthorApplications\Tables;
 
 use App\Models\User;
 use Filament\Actions\Action;
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
 use Filament\Forms\Components\Textarea;
 use Filament\Notifications\Notification;
 use Filament\Tables\Columns\TextColumn;
@@ -115,13 +112,14 @@ class AuthorApplicationsTable
                             ->send();
                     }),
 
-                EditAction::make()
-                    ->label('Detail'),
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+                Action::make('detail')
+                    ->label('Detail')
+                    ->icon('heroicon-o-eye')
+                    ->modalHeading('Detail Pengajuan Author')
+                    ->modalContent(fn ($record) => view(
+                        'filament.author-application-detail',
+                        ['record' => $record]
+                    )),
             ]);
     }
 }
