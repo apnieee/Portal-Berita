@@ -125,7 +125,6 @@
     {{ $beritas->links() }}
 </div>
 
-@if(isset($featuredAuthors) && $featuredAuthors->isNotEmpty())
     <section class="mb-5">
         <div class="d-flex justify-content-between align-items-center mb-3">
             <div>
@@ -164,7 +163,10 @@
         </div>
         <div class="text-center mt-4">
             @auth
-                @if(auth()->user()->role === 'user')
+                @if(auth()->user()->role === 'user' &&
+                    (!isset($myAuthorApplication) ||
+                    !$myAuthorApplication ||
+                    $myAuthorApplication->status === 'rejected'))
                     <button
                         type="button"
                         class="btn btn-dark rounded-pill px-4"
@@ -220,6 +222,47 @@
             @endauth
         </div>
     </section>
-@endif
+
+@auth
+    @if(isset($myAuthorApplication) && $myAuthorApplication)
+        <section class="mb-4">
+            <div class="card border-0 shadow-sm rounded-4 p-4">
+                <h4 class="fw-bold mb-3">Status Pengajuan Author</h4>
+
+                @if($myAuthorApplication->status === 'pending')
+                    <span class="badge bg-warning text-dark align-self-start mb-2">
+                        Menunggu
+                    </span>
+                    <p class="mb-0">
+                        Pengajuan kamu sedang diperiksa admin. Tunggu kabar selanjutnya, ya.
+                    </p>
+
+                @elseif($myAuthorApplication->status === 'approved')
+                    <span class="badge bg-success align-self-start mb-2">
+                        Disetujui
+                    </span>
+                    <p class="mb-0">
+                        Selamat! Pengajuan kamu disetujui. Kamu sekarang sudah menjadi author KWave.
+                    </p>
+
+                @elseif($myAuthorApplication->status === 'rejected')
+                    <span class="badge bg-danger align-self-start mb-2">
+                        Ditolak
+                    </span>
+                    <p class="mb-2">
+                        Pengajuan kamu belum disetujui. Kamu bisa memperbaiki alasan dan mengajukan kembali.
+                    </p>
+
+                    @if($myAuthorApplication->catatan_admin)
+                        <div class="alert alert-light border rounded-3 mb-0">
+                            <strong>Catatan admin:</strong>
+                            <p class="mb-0">{{ $myAuthorApplication->catatan_admin }}</p>
+                        </div>
+                    @endif
+                @endif
+            </div>
+        </section>
+    @endif
+@endauth
 
 @endsection

@@ -6,6 +6,7 @@ use App\Models\Banner;
 use App\Models\Berita;
 use App\Models\Kategori;
 use App\Models\User;
+use App\Models\AuthorApplication;
 use Illuminate\Http\Request;
 
 class BeritaPublicController extends Controller
@@ -27,8 +28,9 @@ class BeritaPublicController extends Controller
         $banners = Banner::where('status', 1)->orderBy('id_banner', 'desc')->get();
         $featured = Berita::published()->where('featured', true)->latest('tanggal')->take(5)->get();
         $featuredAuthors = User::where('role', 'author')->where('tampil_di_beranda', true)->orderBy('nama')->get();
+        $myAuthorApplication = $request->user()? AuthorApplication::where('id_user', $request->user()->id_user)->first(): null;
 
-        return view('berita.index', compact('beritas', 'kategoris', 'banners', 'featured','featuredAuthors', 'keyword', 'idKategori'));
+        return view('berita.index', compact('beritas', 'kategoris', 'banners', 'featured','featuredAuthors','myAuthorApplication', 'keyword', 'idKategori'));
     }
 
     public function show(Berita $berita)
