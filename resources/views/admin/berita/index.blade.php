@@ -22,7 +22,15 @@
         <tr>
             <td>{{ $b->id_berita }}</td>
             <td>{{ $b->judul }}</td>
-            <td>{{ $b->kategori->nama_kategori }}</td>
+            <td>
+                @forelse($b->kategoris as $kat)
+                    <span class="badge bg-secondary">
+                        {{ $kat->nama_kategori }}
+                    </span>
+                @empty
+                    <span class="text-muted">—</span>
+                @endforelse
+            </td>
             <td>{{ $b->user->nama }}</td>
             <td>
                 <span class="badge {{ $b->status === 'published' ? 'bg-success' : 'bg-secondary' }}">{{ $b->status }}</span>

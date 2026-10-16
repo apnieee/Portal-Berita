@@ -92,9 +92,11 @@
                     @endif
 
                     <div class="news-card-body">
-                        <span class="news-category">
-                            {{ $berita->kategori->nama_kategori }}
-                        </span>
+                        @foreach($berita->kategoris as $kat)
+                            <span class="news-category">
+                                {{ $kat->nama_kategori }}
+                            </span>
+                        @endforeach
 
                         <h3>
                             <a href="{{ route('berita.show', $berita->id_berita) }}"

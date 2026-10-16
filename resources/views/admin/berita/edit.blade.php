@@ -12,11 +12,24 @@
     @csrf @method('PUT')
     <div class="mb-3">
         <label class="form-label">Kategori</label>
-        <select name="id_kategori" class="form-select" required>
+        @php
+            $selectedKategoris = old(
+                'kategoris',
+                $berita->kategoris->pluck('id_kategori')->toArray()
+            );
+        @endphp
+
+        <select name="kategoris[]" class="form-select" multiple required>
             @foreach($kategoris as $kat)
-                <option value="{{ $kat->id_kategori }}" {{ old('id_kategori', $berita->id_kategori) == $kat->id_kategori ? 'selected' : '' }}>{{ $kat->nama_kategori }}</option>
+                <option value="{{ $kat->id_kategori }}"
+                    {{ in_array($kat->id_kategori, $selectedKategoris) ? 'selected' : '' }}>
+                    {{ $kat->nama_kategori }}
+                </option>
             @endforeach
         </select>
+        <small class="text-muted">
+            Pilih satu atau lebih kategori. Gunakan Ctrl saat memilih beberapa kategori.
+        </small>
     </div>
     <div class="mb-3">
         <label class="form-label">Judul</label>

@@ -16,10 +16,13 @@ class BeritaPublicController extends Controller
         $keyword = $request->query('q');
         $idKategori = $request->query('kategori');
 
-        $beritas = Berita::with(['kategori', 'user'])
+        $beritas = Berita::with(['kategoris', 'user'])
             ->published()
             ->search($keyword)
-            ->when($idKategori, fn ($q) => $q->where('id_kategori', $idKategori))
+            ->when($idKategori, fn ($q) => $q->whereHas(
+                'kategoris',
+                fn ($kategoriQuery) => $kategoriQuery->where('kategori.id_kategori', $idKategori)
+            ))
             ->latest('tanggal')
             ->paginate(9)
             ->withQueryString();
@@ -39,8 +42,14 @@ class BeritaPublicController extends Controller
 
         $berita->increment('views');
 
-        $terkait = Berita::published()
-            ->where('id_kategori', $berita->id_kategori)
+        $terkait = Berita::with('kategoris')
+            ->published()
+            ->whereHas('kategoris', function ($query) use ($berita) {
+                $query->whereIn(
+                    'kategori.id_kategori',
+                    $berita->kategoris()->pluck('kategori.id_kategori')
+                );
+            })
             ->where('id_berita', '!=', $berita->id_berita)
             ->take(4)
             ->get();

@@ -17,6 +17,20 @@ class Kategori extends Model
 
     public function berita()
     {
-        return $this->hasMany(Berita::class, 'id_kategori', 'id_kategori');
+        return $this->hasMany(
+            Berita::class, 
+            'id_kategori', 
+            'id_kategori'
+        );
+    }
+
+    public function beritas()
+    {
+        return $this->belongsToMany(
+            Berita::class,
+            'berita_kategori',
+            'id_kategori',
+            'id_berita'
+        );
     }
 }

@@ -145,12 +145,13 @@
 
     <div class="row g-5">
 
-        {{-- ARTIKEL --}}
         <div class="col-lg-8">
 
-            <span class="news-category">
-                {{ $berita->kategori->nama_kategori }}
-            </span>
+            @foreach($berita->kategoris as $kat)
+                <span class="news-category">
+                    {{ $kat->nama_kategori }}
+                </span>
+            @endforeach
 
             <h1 class="news-title">
                 {{ $berita->judul }}
@@ -182,7 +183,6 @@
 
         </div>
 
-        {{-- BERITA TERKAIT --}}
         <div class="col-lg-4">
 
             <div class="related-title">

@@ -16,9 +16,10 @@ class BeritaForm
     {
         return $schema
             ->components([
-                Select::make('id_kategori')
+                Select::make('kategoris')
                     ->label('Kategori')
-                    ->relationship('kategori', 'nama_kategori')
+                    ->multiple()
+                    ->relationship('kategoris', 'nama_kategori')
                     ->searchable()
                     ->preload()
                     ->required(),

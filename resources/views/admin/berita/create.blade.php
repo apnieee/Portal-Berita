@@ -12,12 +12,17 @@
     @csrf
     <div class="mb-3">
         <label class="form-label">Kategori</label>
-        <select name="id_kategori" class="form-select" required>
-            <option value="">-- Pilih Kategori --</option>
+        <select name="kategoris[]" class="form-select" multiple required>
             @foreach($kategoris as $kat)
-                <option value="{{ $kat->id_kategori }}" {{ old('id_kategori') == $kat->id_kategori ? 'selected' : '' }}>{{ $kat->nama_kategori }}</option>
+                <option value="{{ $kat->id_kategori }}"
+                    {{ in_array($kat->id_kategori, old('kategoris', [])) ? 'selected' : '' }}>
+                    {{ $kat->nama_kategori }}
+                </option>
             @endforeach
         </select>
+        <small class="text-muted">
+            Pilih satu atau lebih kategori. Gunakan Ctrl saat memilih beberapa kategori.
+        </small>
     </div>
     <div class="mb-3">
         <label class="form-label">Judul</label>

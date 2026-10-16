@@ -38,6 +38,16 @@ class Berita extends Model
         );
     }
 
+    public function kategoris()
+    {
+        return $this->belongsToMany(
+            Kategori::class,
+            'berita_kategori',
+            'id_berita',
+            'id_kategori'
+        );
+    }
+
     public function user()
     {
         return $this->belongsTo(
