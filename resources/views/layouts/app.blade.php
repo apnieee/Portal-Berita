@@ -364,6 +364,64 @@
                 font-size: 22px;
             }
         }
+
+
+        #bannerCarousel {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        #bannerCarousel.banner-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #bannerCarousel .carousel-caption .badge,
+        #bannerCarousel .carousel-caption h2,
+        #bannerCarousel .carousel-caption a {
+            animation: bannerTextIn 0.7s ease both;
+        }
+
+        #bannerCarousel .carousel-caption h2 {
+            animation-delay: 0.15s;
+        }
+
+        #bannerCarousel .carousel-caption a {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes bannerFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bannerTextIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            #bannerCarousel,
+            #bannerCarousel .carousel-caption .badge,
+            #bannerCarousel .carousel-caption h2,
+            #bannerCarousel .carousel-caption a {
+                animation: none;
+            }
+        }
+
     </style>
 </head>
 
@@ -563,6 +621,27 @@
         } else {
             newsCards.forEach(card => card.classList.add('is-visible'));
         }
+   
+        const banner = document.querySelector('#bannerCarousel');
+
+        if (banner && 'IntersectionObserver' in window) {
+            const bannerObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        banner.classList.add('banner-visible');
+                    } else {
+                        banner.classList.remove('banner-visible');
+                    }
+                });
+            }, {
+                threshold: 0.15
+            });
+
+            bannerObserver.observe(banner);
+        } else if (banner) {
+            banner.classList.add('banner-visible');
+        }
+
     </script>
 
 </body>
