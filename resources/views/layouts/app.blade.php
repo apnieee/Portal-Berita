@@ -29,14 +29,24 @@
             font-family: Arial, Helvetica, sans-serif;
         }
 
+
         .kwave-navbar {
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.96);
             border-bottom: 1px solid #eee8f2;
             position: sticky;
             top: 0;
             z-index: 1000;
+            transition: background 0.3s ease, box-shadow 0.3s ease,
+                        backdrop-filter 0.3s ease;
         }
 
+        .kwave-navbar.scrolled {
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: 0 5px 24px rgba(40, 20, 50, 0.08);
+            border-bottom-color: rgba(255, 63, 159, 0.12);
+        }
 
         .kwave-logo {
             display: inline-flex;
@@ -493,6 +503,18 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const kwaveNavbar = document.querySelector('.kwave-navbar');
+
+        function updateKwaveNavbar() {
+            if (!kwaveNavbar) return;
+
+            kwaveNavbar.classList.toggle('scrolled', window.scrollY > 20);
+        }
+
+        window.addEventListener('scroll', updateKwaveNavbar, { passive: true });
+        updateKwaveNavbar();
+    </script>
 
 </body>
 </html>
