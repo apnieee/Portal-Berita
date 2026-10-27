@@ -239,6 +239,32 @@
             box-shadow: 0 10px 25px rgba(30, 20, 40, 0.08);
         }
 
+        .news-card.reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.6s ease, transform 0.6s ease,
+                        box-shadow 0.2s ease;
+        }
+
+        .news-card.reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .news-card.reveal-on-scroll.is-visible:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(30, 20, 40, 0.08);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .news-card.reveal-on-scroll,
+            .news-card.reveal-on-scroll.is-visible {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+        }
+
         .news-card img {
             width: 100%;
             height: 210px;
@@ -514,6 +540,29 @@
 
         window.addEventListener('scroll', updateKwaveNavbar, { passive: true });
         updateKwaveNavbar();
+        
+        const newsCards = document.querySelectorAll('.news-card');
+
+        if ('IntersectionObserver' in window) {
+            const newsObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    } else {
+                        entry.target.classList.remove('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.12
+            });
+
+            newsCards.forEach(card => {
+                card.classList.add('reveal-on-scroll');
+                newsObserver.observe(card);
+            });
+        } else {
+            newsCards.forEach(card => card.classList.add('is-visible'));
+        }
     </script>
 
 </body>
