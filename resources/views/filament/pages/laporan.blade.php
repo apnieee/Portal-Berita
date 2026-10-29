@@ -10,6 +10,7 @@
         </x-slot>
 
         <form
+            id="formLaporan"
             method="GET"
             action="{{ url('/admin/laporan/cetak') }}"
             target="_blank"
@@ -83,11 +84,20 @@
 
     <script>
         function exportPdf() {
-            const form = document.querySelector('form');
-            const params = new URLSearchParams(new FormData(form));
+            const form = document.getElementById('formLaporan');
 
-            window.location.href =
-                "{{ url('/admin/laporan/export-pdf') }}?" + params.toString();
+            if (!form) {
+                alert('Form filter laporan tidak ditemukan.');
+                return;
+            }
+
+            const params = new URLSearchParams();
+            params.set('id_kategori', form.elements['id_kategori'].value);
+            params.set('dari', form.elements['dari'].value);
+            params.set('sampai', form.elements['sampai'].value);
+
+            const url = "{{ route('admin.laporan.export-pdf') }}";
+            window.open(url + '?' + params.toString(), '_blank');
         }
     </script>
 
