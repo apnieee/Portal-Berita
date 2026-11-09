@@ -51,61 +51,33 @@
         .kwave-logo {
             display: inline-flex;
             align-items: center;
-            gap: 3px;
-            font-size: 28px;
-            font-weight: 900;
-            letter-spacing: -1px;
+            position: relative;
+            width: 48px;
+            height: 40px;
             text-decoration: none;
-            color: var(--dark);
-            transition: transform 0.3s ease, filter 0.3s ease;
+            flex-shrink: 0;
         }
 
-        .kwave-logo span {
-            background: linear-gradient(120deg, #ff3f9f, #b46bff, #ff3f9f);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: kwave-gradient 4s linear infinite;
-        }
-
-        .kwave-logo .kwave-star {
-            display: inline-block;
-            margin-left: 2px;
-            font-size: 15px;
-            color: #ff3f9f;
-            -webkit-text-fill-color: #ff3f9f;
-            animation: kwave-twinkle 1.8s ease-in-out infinite;
+        .kwave-logo img {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            max-width: none;
+            object-fit: contain;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
         }
 
         .kwave-logo:hover {
             transform: translateY(-2px);
-            filter: drop-shadow(0 3px 8px #ff3f9f40);
+            filter: drop-shadow(0 3px 8px #b46bff40);
         }
 
-        @keyframes kwave-gradient {
-            to {
-                background-position: 200% center;
-            }
-        }
-
-        @keyframes kwave-twinkle {
-            0%, 100% {
-                opacity: 0.55;
-                transform: scale(0.85) rotate(-10deg);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.15) rotate(10deg);
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .kwave-logo,
-            .kwave-logo span,
-            .kwave-logo .kwave-star {
-                animation: none;
-                transition: none;
+        @media (max-width: 768px) {
+            .kwave-logo img {
+                height: 42px;
+                width: 42px;
             }
         }
 
@@ -430,7 +402,7 @@
         <div class="container py-2">
 
             <a class="kwave-logo" href="{{ route('home') }}">
-                K<span>Wave</span><span class="kwave-star" aria-hidden="true">✦</span>
+                <img src="{{ asset('images/logo-kwave.png') }}" alt="KWave">
             </a>
 
             <button
