@@ -139,6 +139,71 @@
             font-size: 1rem;
         }
     }
+
+    .news-detail {
+        transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .news-detail.dark-mode {
+        color: #e5e7eb;
+    }
+
+    .dark-mode .news-title,
+    .dark-mode .article-content,
+    .dark-mode .article-content h2,
+    .dark-mode .article-content h3,
+    .dark-mode .related-title {
+        color: #e5e7eb;
+    }
+
+    .dark-mode .news-meta,
+    .dark-mode .text-muted {
+        color: #a1a1aa !important;
+    }
+
+    .dark-mode .related-card {
+        background: #24212b;
+        border-color: #393342;
+    }
+
+    .dark-mode .related-card a {
+        color: #f3e8ff;
+    }
+
+    .dark-mode .article-content blockquote {
+        background: #302a38;
+        color: #d4cbdc;
+    }
+
+    .dark-mode .back-button {
+        color: #f3e8ff;
+        border-color: #a78bfa;
+    }
+
+    /* TOMBOL MODE */
+    .theme-toggle {
+        width: 40px;
+        height: 40px;
+        border: 1px solid #ddd;
+        border-radius: 50%;
+        background: transparent;
+        color: #555;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: 0.2s ease;
+    }
+
+    .theme-toggle:hover {
+        background: #fce7f3;
+        color: #d63384;
+    }
+
+    .dark-mode .theme-toggle {
+        color: #f3e8ff;
+        border-color: #62536f;
+    }
 </style>
 
 <div class="news-detail py-4">
@@ -146,6 +211,17 @@
     <div class="row g-5">
 
         <div class="col-lg-8">
+            <div class="d-flex justify-content-end mb-3">
+                <button
+                    type="button"
+                    class="theme-toggle"
+                    id="themeToggle"
+                    aria-label="Aktifkan mode gelap"
+                    title="Mode gelap"
+                >
+                    <i class="bi bi-moon"></i>
+                </button>
+            </div>
 
             @foreach($berita->kategoris as $kat)
                 <span class="news-category">
@@ -212,9 +288,44 @@
             @endforelse
 
         </div>
-
     </div>
-
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const container = document.querySelector('.news-detail');
+    const toggle = document.getElementById('themeToggle');
+    const icon = toggle.querySelector('i');
+
+    //ambil tema yang tersimpan
+    let darkMode = localStorage.getItem('kwave-news-theme') === 'dark';
+
+    function applyTheme() {
+        container.classList.toggle('dark-mode', darkMode);
+
+        icon.className = darkMode
+            ? 'bi bi-sun'
+            : 'bi bi-moon';
+
+        toggle.setAttribute(
+            'aria-label',
+            darkMode ? 'Aktifkan mode terang' : 'Aktifkan mode gelap'
+        );
+    }
+
+    applyTheme();
+
+    toggle.addEventListener('click', function () {
+        darkMode = !darkMode;
+
+        localStorage.setItem(
+            'kwave-news-theme',
+            darkMode ? 'dark' : 'light'
+        );
+
+        applyTheme();
+    });
+});
+</script>
 
 @endsection

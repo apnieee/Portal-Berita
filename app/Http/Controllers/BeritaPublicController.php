@@ -21,19 +21,49 @@ class BeritaPublicController extends Controller
             ->search($keyword)
             ->when($idKategori, fn ($q) => $q->whereHas(
                 'kategoris',
-                fn ($kategoriQuery) => $kategoriQuery->where('kategori.id_kategori', $idKategori)
+                fn ($kategoriQuery) => $kategoriQuery->where(
+                    'kategori.id_kategori',
+                    $idKategori
+                )
             ))
             ->latest('tanggal')
             ->paginate(9)
             ->withQueryString();
 
         $kategoris = Kategori::orderBy('nama_kategori')->get();
-        $banners = Banner::where('status', 1)->orderBy('id_banner', 'desc')->get();
-        $featured = Berita::published()->where('featured', true)->latest('tanggal')->take(5)->get();
-        $featuredAuthors = User::where('role', 'author')->where('tampil_di_beranda', true)->orderBy('nama')->get();
-        $myAuthorApplication = $request->user()? AuthorApplication::where('id_user', $request->user()->id_user)->first(): null;
 
-        return view('berita.index', compact('beritas', 'kategoris', 'banners', 'featured','featuredAuthors','myAuthorApplication', 'keyword', 'idKategori'));
+        $banners = Banner::where('status', 1)
+            ->orderBy('id_banner', 'desc')
+            ->get();
+
+        $featured = Berita::published()
+            ->where('featured', true)
+            ->latest('tanggal')
+            ->take(5)
+            ->get();
+
+        // Menampilkan semua akun dengan role author
+        $featuredAuthors = User::where('role', 'author')
+            ->orderBy('nama')
+            ->get();
+
+        $myAuthorApplication = $request->user()
+            ? AuthorApplication::where(
+                'id_user',
+                $request->user()->id_user
+            )->first()
+            : null;
+
+        return view('berita.index', compact(
+            'beritas',
+            'kategoris',
+            'banners',
+            'featured',
+            'featuredAuthors',
+            'myAuthorApplication',
+            'keyword',
+            'idKategori'
+        ));
     }
 
     public function show(Berita $berita)

@@ -1,5 +1,7 @@
+
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +9,7 @@
     <title>@yield('title', 'KWave - Portal Berita K-Pop')</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <style>
         :root {
@@ -28,7 +31,6 @@
             color: var(--text);
             font-family: Arial, Helvetica, sans-serif;
         }
-
 
         .kwave-navbar {
             background: rgba(255, 255, 255, 0.96);
@@ -274,7 +276,6 @@
             margin-top: 12px;
         }
 
-
         .section-title {
             font-size: 25px;
             font-weight: 800;
@@ -321,22 +322,23 @@
         }
 
         @media (max-width: 768px) {
-
             .kwave-logo {
                 font-size: 24px;
             }
+
             .search-box-wrapper {
                 margin-top: 12px;
                 margin-bottom: 10px;
             }
+
             .news-card img {
                 height: 190px;
             }
+
             .section-title {
                 font-size: 22px;
             }
         }
-
 
         #bannerCarousel {
             opacity: 0;
@@ -368,6 +370,7 @@
                 opacity: 0;
                 transform: translateY(18px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -379,6 +382,7 @@
                 opacity: 0;
                 transform: translateY(12px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -394,6 +398,212 @@
             }
         }
 
+        .theme-toggle {
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ddd5e3;
+            border-radius: 50%;
+            background: transparent;
+            color: var(--dark);
+            cursor: pointer;
+            font-size: 17px;
+            transition: 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .theme-toggle:hover {
+            background: #fce7f3;
+            color: var(--pink);
+        }
+
+        .author-card {
+            height: 100%;
+            min-height: 215px;
+            padding: 25px 18px;
+            border: 1px solid #eee8f2;
+            border-radius: 18px;
+            background: white;
+            text-align: center;
+            transition: 0.25s ease;
+        }
+
+        .author-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff3f9f;
+            box-shadow: 0 10px 25px rgba(30, 20, 40, 0.08);
+        }
+
+        .author-avatar {
+            width: 82px;
+            height: 82px;
+            margin: 0 auto 16px;
+            border-radius: 50%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #ff3f9f, #8b5cf6);
+            color: white;
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-name {
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--text);
+        }
+
+        .author-label {
+            display: inline-block;
+            font-size: 12px;
+            color: var(--pink);
+            font-weight: 600;
+        }
+
+        .author-empty {
+            padding: 30px;
+            border-radius: 16px;
+            background: white;
+            text-align: center;
+            color: var(--muted);
+        }
+
+        /* AUTHOR DARK MODE */
+        .dark-mode .author-card,
+        .dark-mode .author-empty {
+            background: #25212c;
+            border-color: #403847;
+            color: #eeeaf2;
+        }
+
+        .dark-mode .author-name {
+            color: #eeeaf2;
+        }
+
+        body.dark-mode {
+            --light: #17151c;
+            --text: #eeeaf2;
+            --muted: #aaa2b2;
+            background: var(--light);
+            color: var(--text);
+        }
+
+        .dark-mode .kwave-navbar,
+        .dark-mode .kwave-navbar.scrolled {
+            background: rgba(30, 26, 36, 0.96);
+            border-bottom-color: #393240;
+        }
+
+        .dark-mode .nav-link {
+            color: #e5deeb !important;
+        }
+
+        .dark-mode .theme-toggle {
+            color: #eeeaf2;
+            border-color: #554b60;
+        }
+
+        .dark-mode .theme-toggle:hover {
+            background: #393040;
+            color: #ff79bb;
+        }
+
+        .dark-mode .search-box,
+        .dark-mode .category-btn {
+            background: #26222e;
+            color: #eeeaf2;
+            border-color: #494151;
+        }
+
+        .dark-mode .search-box::placeholder {
+            color: #aaa2b2;
+        }
+
+        .dark-mode .btn-login {
+            color: #eeeaf2;
+            border-color: #554b60;
+        }
+
+        .dark-mode .btn-login:hover {
+            background: var(--pink);
+            color: white;
+        }
+
+        .dark-mode .news-card,
+        .dark-mode .related-card,
+        .dark-mode .card,
+        .dark-mode .dropdown-menu {
+            background: #25212c;
+            border-color: #403847;
+            color: #eeeaf2;
+        }
+
+        .dark-mode .news-title,
+        .dark-mode .related-card a,
+        .dark-mode .section-title,
+        .dark-mode h1,
+        .dark-mode h2,
+        .dark-mode h3,
+        .dark-mode h4,
+        .dark-mode h5,
+        .dark-mode h6 {
+            color: #eeeaf2;
+        }
+
+        .dark-mode .news-meta,
+        .dark-mode .text-muted {
+            color: #aaa2b2 !important;
+        }
+
+        .dark-mode .dropdown-item {
+            color: #eeeaf2;
+        }
+
+        .dark-mode .dropdown-item:hover {
+            background: #393040;
+            color: white;
+        }
+        .dark-mode .form-control,
+        .dark-mode .form-select,
+        .dark-mode textarea {
+            background-color: #26222e;
+            border-color: #494151;
+            color: #eeeaf2;
+        }
+        .dark-mode .form-control::placeholder,
+        .dark-mode textarea::placeholder {
+            color: #aaa2b2;
+        }
+        .dark-mode .table {
+            --bs-table-bg: #25212c;
+            --bs-table-color: #eeeaf2;
+            --bs-table-border-color: #403847;
+        }
+        .dark-mode .alert {
+            color: #eeeaf2;
+        }
+        .dark-mode .kwave-footer {
+            background: #100e14;
+        }
+        .dark-mode hr {
+            border-color: #554b60;
+        }
+        .dark-mode .navbar-toggler {
+            border-color: #554b60;
+        }
+        .dark-mode .navbar-toggler-icon {
+            filter: invert(1);
+        }
     </style>
 </head>
 
@@ -413,13 +623,11 @@
                 aria-controls="kwaveNav"
                 aria-expanded="false"
                 aria-label="Toggle navigation">
-
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="kwaveNav">
                 <ul class="navbar-nav ms-lg-4 me-auto">
-
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('home') }}">
                             Home
@@ -456,69 +664,100 @@
                     </button>
                 </form>
 
-            @auth
-                @if(auth()->user()->role === 'admin')
-                    <a href="{{ url('/admin') }}" class="btn-login me-2">
-                        Admin
-                    </a>
-                @elseif(auth()->user()->role === 'author')
-                    <a href="{{ url('/author') }}" class="btn-login me-2">
-                        Dashboard Author
-                    </a>
-                @else
-                    <div class="dropdown me-2">
-                        <button
-                            class="profile-avatar"
-                            type="button"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                            aria-label="Buka menu profil">
+                <!-- Tombol dark mode untuk semua pengguna -->
+                <button
+                    type="button"
+                    class="theme-toggle me-2"
+                    id="themeToggle"
+                    aria-label="Aktifkan mode gelap"
+                    title="Mode gelap">
+                    <i class="bi bi-moon"></i>
+                </button>
 
-                            @if(auth()->user()->foto_profil)
-                                <img
-                                    src="{{ asset('storage/' . auth()->user()->foto_profil) }}"
-                                    alt="Foto profil">
-                            @else
-                                <span>
-                                    {{ strtoupper(substr(auth()->user()->nama, 0, 1)) }}
-                                </span>
-                            @endif
-                        </button>
+                @auth
 
-                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-4 p-2">
-                            <li class="px-3 py-2">
-                                <strong>{{ auth()->user()->nama }}</strong>
-                                <div class="small text-muted">
-                                    {{ auth()->user()->email }}
-                                </div>
-                            </li>
+                    @if(auth()->user()->role === 'admin')
 
-                            <li><hr class="dropdown-divider"></li>
+                        <a href="{{ url('/admin') }}" class="btn-login me-2">
+                            Admin
+                        </a>
 
-                            <li>
-                                <a class="dropdown-item rounded-3"
-                                href="{{ route('profile.edit') }}">
-                                    Edit Profil
-                                </a>
-                            </li>
+                    @elseif(auth()->user()->role === 'author')
 
-                            <li>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button type="submit"
+                        <a href="{{ url('/author') }}" class="btn-login me-2">
+                            Dashboard Author
+                        </a>
+
+                    @else
+
+                        <div class="dropdown me-2">
+
+                            <button
+                                class="profile-avatar"
+                                type="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                                aria-label="Buka menu profil">
+
+                                @if(auth()->user()->foto_profil)
+                                    <img
+                                        src="{{ asset('storage/' . auth()->user()->foto_profil) }}"
+                                        alt="Foto profil">
+                                @else
+                                    <span>
+                                        {{ strtoupper(substr(auth()->user()->nama, 0, 1)) }}
+                                    </span>
+                                @endif
+
+                            </button>
+
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-4 p-2">
+
+                                <li class="px-3 py-2">
+                                    <strong>{{ auth()->user()->nama }}</strong>
+
+                                    <div class="small text-muted">
+                                        {{ auth()->user()->email }}
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+
+                                <li>
+                                    <a
+                                        class="dropdown-item rounded-3"
+                                        href="{{ route('profile.edit') }}">
+                                        Edit Profil
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+
+                                        <button
+                                            type="submit"
                                             class="dropdown-item rounded-3 text-danger">
-                                        Logout
-                                    </button>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
-                @endif
-            @else
-                <a href="{{ route('login') }}" class="btn-login">
-                    Login Sekarang
-                </a>
-            @endauth
+                                            Logout
+                                        </button>
+                                    </form>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                    @endif
+
+                @else
+
+                    <a href="{{ route('login') }}" class="btn-login">
+                        Login Sekarang
+                    </a>
+
+                @endauth
+
             </div>
         </div>
     </nav>
@@ -531,11 +770,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-
                     <div class="footer-logo">
                         K<span>Wave</span>
                     </div>
-
                     <p class="footer-text mt-2">
                         Portal berita K-Pop yang menghadirkan
                         berbagai informasi terbaru seputar idol,
@@ -554,7 +791,7 @@
             </div>
 
             <div class="footer-bottom text-center">
-                &copy; {{ date('Y') }} KWave — Portal Berita K-Pop
+                © {{ date('Y') }} KWave — Portal Berita K-Pop
             </div>
         </div>
     </footer>
@@ -565,16 +802,23 @@
         function updateKwaveNavbar() {
             if (!kwaveNavbar) return;
 
-            kwaveNavbar.classList.toggle('scrolled', window.scrollY > 20);
+            kwaveNavbar.classList.toggle(
+                'scrolled',
+                window.scrollY > 20
+            );
         }
 
-        window.addEventListener('scroll', updateKwaveNavbar, { passive: true });
+        window.addEventListener('scroll', updateKwaveNavbar, {
+            passive: true
+        });
+
         updateKwaveNavbar();
-        
+
+
         const newsCards = document.querySelectorAll('.news-card');
 
         if ('IntersectionObserver' in window) {
-            const newsObserver = new IntersectionObserver((entries, observer) => {
+            const newsObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
@@ -591,9 +835,12 @@
                 newsObserver.observe(card);
             });
         } else {
-            newsCards.forEach(card => card.classList.add('is-visible'));
+            newsCards.forEach(card => {
+                card.classList.add('is-visible');
+            });
         }
-   
+
+
         const banner = document.querySelector('#bannerCarousel');
 
         if (banner && 'IntersectionObserver' in window) {
@@ -614,6 +861,45 @@
             banner.classList.add('banner-visible');
         }
 
+
+        const themeToggle = document.getElementById('themeToggle');
+
+        if (themeToggle) {
+            const themeIcon = themeToggle.querySelector('i');
+
+            let savedTheme = localStorage.getItem('kwave-theme');
+            let isDark = savedTheme === 'dark';
+
+            function applyTheme() {
+                document.body.classList.toggle('dark-mode', isDark);
+
+                themeIcon.className = isDark
+                    ? 'bi bi-sun'
+                    : 'bi bi-moon';
+
+                themeToggle.setAttribute(
+                    'aria-label',
+                    isDark ? 'Aktifkan mode terang' : 'Aktifkan mode gelap'
+                );
+
+                themeToggle.title = isDark
+                    ? 'Mode terang'
+                    : 'Mode gelap';
+            }
+
+            applyTheme();
+
+            themeToggle.addEventListener('click', function () {
+                isDark = !isDark;
+
+                localStorage.setItem(
+                    'kwave-theme',
+                    isDark ? 'dark' : 'light'
+                );
+
+                applyTheme();
+            });
+        }
     </script>
 
 </body>

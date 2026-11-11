@@ -127,103 +127,114 @@
     {{ $beritas->links() }}
 </div>
 
-    <section class="mb-5">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <div>
-                <h2 class="section-title mb-1">Kenalan dengan Author KWave</h2>
-                <p class="text-muted mb-0">
-                    Cerita K-Pop lebih seru dari sudut pandang mereka.
-                </p>
-            </div>
-        </div>
 
-        <div class="row g-3">
-            @foreach($featuredAuthors as $author)
-                <div class="col-6 col-md-4 col-lg-3">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 text-center p-3">
+<section class="author-section mb-5">
+
+    <div class="mb-4">
+        <h2 class="section-title mb-1">Kenalan dengan Author KWave</h2>
+        <p class="text-muted mb-0">
+            Cerita K-Pop lebih seru dari sudut pandang mereka.
+        </p>
+    </div>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
+
+        @forelse($featuredAuthors as $author)
+            <div class="col">
+                <div class="author-card h-100">
+                    <div class="author-avatar">
                         @if($author->foto_profil)
                             <img
                                 src="{{ asset('storage/' . $author->foto_profil) }}"
                                 alt="{{ $author->nama }}"
-                                class="rounded-circle mx-auto mb-3"
-                                style="width:80px;height:80px;object-fit:cover;"
                             >
                         @else
-                            <div
-                                class="rounded-circle bg-light d-flex align-items-center justify-content-center mx-auto mb-3"
-                                style="width:80px;height:80px;font-size:28px;font-weight:bold;"
-                            >
+                            <span>
                                 {{ strtoupper(substr($author->nama, 0, 1)) }}
-                            </div>
+                            </span>
                         @endif
+                    </div>
+                    <h5 class="author-name">
+                        {{ $author->nama }}
+                    </h5>
+                    <span class="author-label">
+                        Author KWave
+                    </span>
+                </div>
+            </div>
 
-                        <h5 class="fw-bold mb-1">{{ $author->nama }}</h5>
-                        <p class="text-muted small mb-0">Author KWave</p>
+        @empty
+            <div class="col-12">
+                <div class="author-empty">
+                    Belum ada author yang ditampilkan.
+                </div>
+            </div>
+        @endforelse
+    </div>
+
+    <div class="text-center mt-4">
+        @auth
+            @if(auth()->user()->role === 'user' &&
+                (!isset($myAuthorApplication) ||
+                !$myAuthorApplication ||
+                $myAuthorApplication->status === 'rejected'))
+
+                <button
+                    type="button"
+                    class="btn btn-dark rounded-pill px-4"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#formPengajuanAuthor"
+                    aria-expanded="false"
+                    aria-controls="formPengajuanAuthor">
+                    Gabung Jadi Author
+                </button>
+
+                <div class="collapse mt-4 text-start" id="formPengajuanAuthor">
+                    <div class="card border-0 shadow-sm rounded-4 mx-auto p-4"
+                         style="max-width: 650px;">
+
+                        <h4 class="fw-bold mb-2">Gabung Jadi Author KWave</h4>
+
+                        <p class="text-muted">
+                            Ceritakan alasan kamu ingin menjadi author KWave.
+                        </p>
+
+                        <form action="{{ route('author-application.store') }}"
+                              method="POST">
+                            @csrf
+
+                            <div class="mb-3">
+                                <label for="alasan" class="form-label">
+                                    Kenapa kamu ingin bergabung?
+                                </label>
+
+                                <textarea
+                                    name="alasan"
+                                    id="alasan"
+                                    class="form-control rounded-3"
+                                    rows="5"
+                                    minlength="20"
+                                    maxlength="2000"
+                                    required
+                                    placeholder="Ceritakan minatmu terhadap K-Pop dan hal yang ingin kamu bagikan..."
+                                >{{ old('alasan') }}</textarea>
+                            </div>
+
+                            <button type="submit"
+                                    class="btn btn-primary rounded-pill px-4">
+                                Kirim Pengajuan
+                            </button>
+                        </form>
                     </div>
                 </div>
-            @endforeach
-        </div>
-        <div class="text-center mt-4">
-            @auth
-                @if(auth()->user()->role === 'user' &&
-                    (!isset($myAuthorApplication) ||
-                    !$myAuthorApplication ||
-                    $myAuthorApplication->status === 'rejected'))
-                    <button
-                        type="button"
-                        class="btn btn-dark rounded-pill px-4"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#formPengajuanAuthor"
-                        aria-expanded="false"
-                        aria-controls="formPengajuanAuthor"
-                    >
-                        Gabung Jadi Author
-                    </button>
-
-                    <div class="collapse mt-4 text-start" id="formPengajuanAuthor">
-                        <div class="card border-0 shadow-sm rounded-4 mx-auto p-4"
-                            style="max-width: 650px;">
-                            <h4 class="fw-bold mb-2">Gabung Jadi Author KWave</h4>
-                            <p class="text-muted">
-                                Ceritakan alasan kamu ingin menjadi author KWave.
-                            </p>
-
-                            <form action="{{ route('author-application.store') }}"
-                                method="POST">
-                                @csrf
-
-                                <div class="mb-3">
-                                    <label for="alasan" class="form-label">
-                                        Kenapa kamu ingin bergabung?
-                                    </label>
-                                    <textarea
-                                        name="alasan"
-                                        id="alasan"
-                                        class="form-control rounded-3"
-                                        rows="5"
-                                        minlength="20"
-                                        maxlength="2000"
-                                        required
-                                        placeholder="Ceritakan minatmu terhadap K-Pop dan hal yang ingin kamu bagikan..."
-                                    >{{ old('alasan') }}</textarea>
-                                </div>
-
-                                <button type="submit"
-                                        class="btn btn-primary rounded-pill px-4">
-                                    Kirim Pengajuan
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                @endif
-            @else
-                <a href="{{ route('login') }}"
-                class="btn btn-dark rounded-pill px-4">
-                    Login untuk Bergabung
-                </a>
-            @endauth
-        </div>
-    </section>
+            @endif
+        @else
+            <a href="{{ route('login') }}"
+               class="btn btn-dark rounded-pill px-4">
+                Login untuk Bergabung
+            </a>
+        @endauth
+    </div>
+</section>
 
 @auth
     @if(isset($myAuthorApplication) && $myAuthorApplication)
