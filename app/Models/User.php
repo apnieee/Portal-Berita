@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -44,12 +43,14 @@ class User extends Authenticatable implements HasName, FilamentUser
 
     public function canAccessPanel(Panel $panel): bool
     {
-        if($panel->getId() === 'admin') {
+        if ($panel->getId() === 'admin') {
             return $this->role === 'admin';
         }
-        if($panel->getId() === 'author') {
+
+        if ($panel->getId() === 'author') {
             return $this->role === 'author';
         }
+
         return false;
     }
 
@@ -59,4 +60,4 @@ class User extends Authenticatable implements HasName, FilamentUser
             'password' => 'hashed',
         ];
     }
-}   
+}
