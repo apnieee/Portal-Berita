@@ -1,7 +1,5 @@
 @extends('layouts.app')
-
 @section('title', 'Profil Saya - KWave')
-
 @section('content')
 <div class="container py-4" style="max-width: 720px;">
 
@@ -32,9 +30,7 @@
 
     <div class="card border-0 shadow-sm rounded-4">
         <div class="card-body p-4">
-
             <div class="text-center mb-4">
-
                 @if ($user->foto_profil)
                     <img
                         src="{{ asset('storage/' . $user->foto_profil) }}"
@@ -50,10 +46,8 @@
                         {{ strtoupper(substr($user->nama, 0, 1)) }}
                     </div>
                 @endif
-
                 <h4>{{ $user->nama }}</h4>
                 <p class="text-muted">{{ $user->email }}</p>
-
             </div>
 
             <form
@@ -96,7 +90,6 @@
 
                 <div class="mb-4">
                     <label for="email" class="form-label">Email</label>
-
                     <input
                         type="email"
                         id="email"
@@ -107,20 +100,35 @@
                         required>
                 </div>
 
+                @if ($user->role === 'author')
+                    <div class="mb-4">
+                        <label for="bio" class="form-label">Bio Author</label>
+
+                        <textarea
+                            id="bio"
+                            name="bio"
+                            class="form-control"
+                            rows="4"
+                            maxlength="1000"
+                            placeholder="Ceritakan sedikit tentang dirimu sebagai penulis...">{{ old('bio', $user->bio) }}</textarea>
+
+                        <small class="text-muted">
+                            Maksimal 1.000 karakter. Bio ini akan ditampilkan di profil publikmu.
+                        </small>
+                    </div>
+                @endif
+
                 <button
                     type="submit"
                     class="btn text-white w-100"
                     style="background: #ff3f9f;">
                     Simpan Perubahan
                 </button>
-
             </form>
 
 
             <hr class="my-4">
-
             <h5 class="fw-bold mb-3">Keamanan Akun</h5>
-
             <p class="text-muted small">
                 Gunakan kata sandi yang kuat dan jangan bagikan kepada orang lain.
             </p>

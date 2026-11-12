@@ -45,3 +45,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/pengajuan-author', [AuthorApplicationController::class, 'store'])->name('author-application.store');
 });
+
+//profil publik author
+Route::get('/author/{id}', [ProfileController::class, 'showAuthor'])
+    ->name('author.show');

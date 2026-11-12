@@ -137,16 +137,19 @@
         </p>
     </div>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
-
         @forelse($featuredAuthors as $author)
             <div class="col">
-                <div class="author-card h-100">
+                <a
+                    href="{{ route('author.show', $author->id_user) }}"
+                    class="author-card h-100 d-block text-decoration-none"
+                    style="color: inherit;"
+                    aria-label="Lihat profil {{ $author->nama }}">
+
                     <div class="author-avatar">
                         @if($author->foto_profil)
                             <img
                                 src="{{ asset('storage/' . $author->foto_profil) }}"
-                                alt="{{ $author->nama }}"
-                            >
+                                alt="{{ $author->nama }}">
                         @else
                             <span>
                                 {{ strtoupper(substr($author->nama, 0, 1)) }}
@@ -159,9 +162,8 @@
                     <span class="author-label">
                         Author KWave
                     </span>
-                </div>
+                </a>
             </div>
-
         @empty
             <div class="col-12">
                 <div class="author-empty">

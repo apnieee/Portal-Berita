@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use App\Models\AuthorApplication;
+use App\Models\User;
+use App\Models\Berita;
 
 class ProfileController extends Controller
 {
@@ -42,6 +44,11 @@ class ProfileController extends Controller
                 'image',
                 'mimes:jpg,jpeg,png,webp',
                 'max:2048',
+            ],
+            'bio' => [
+                'nullable',
+                'string',
+                'max:1000',
             ],
         ]);
 
@@ -82,5 +89,28 @@ class ProfileController extends Controller
         return redirect()
             ->route('profile.edit')
             ->with('password_success', 'Kata sandi berhasil diperbarui!');
+    }
+
+    public function showAuthor($id)
+    {
+        $author = User::where('id_user', $id)
+            ->where('role', 'author')
+            ->firstOrFail();
+
+        $beritas = Berita::with('kategoris')
+            ->published()
+            ->where('id_user', $author->id_user)
+            ->latest('tanggal')
+            ->paginate(9);
+
+        $totalBerita = Berita::published()
+            ->where('id_user', $author->id_user)
+            ->count();
+
+        return view('profile.author', compact(
+            'author',
+            'beritas',
+            'totalBerita'
+        ));
     }
 }
