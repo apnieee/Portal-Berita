@@ -445,7 +445,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #ff3f9f, #8b5cf6);
+            background: #ff3f9f;
             color: white;
             font-size: 30px;
             font-weight: 700;
@@ -478,7 +478,6 @@
             color: var(--muted);
         }
 
-        /* AUTHOR DARK MODE */
         .dark-mode .author-card,
         .dark-mode .author-empty {
             background: #25212c;
