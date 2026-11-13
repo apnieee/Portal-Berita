@@ -74,4 +74,9 @@ class EditProfil extends Page implements HasSchemas
             ->success()
             ->send();
     }
+
+    public function getTestSchema(): string
+    {
+        return $this->form ? 'Schema terbaca' : 'Schema kosong';
+    }
 }
