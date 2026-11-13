@@ -26,6 +26,7 @@ class AuthorPanelProvider extends PanelProvider
         return $panel
             ->id('author')
             ->path('author')
+            ->brandName('KWave')
             ->colors([
                 'primary' => Color::Amber,
             ])
