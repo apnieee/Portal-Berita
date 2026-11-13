@@ -7,9 +7,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Filament\Models\Contracts\HasName;
 use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasAvatar;
+use Illuminate\Support\Facades\Storage;
 use Filament\Panel;
 
-class User extends Authenticatable implements HasName, FilamentUser
+class User extends Authenticatable implements HasName, HasAvatar, FilamentUser
 {
     use HasFactory, Notifiable;
 
@@ -59,5 +61,12 @@ class User extends Authenticatable implements HasName, FilamentUser
         return [
             'password' => 'hashed',
         ];
+    }
+
+    public function getFilamentAvatarUrl(): ?string
+    {
+        return $this->foto_profil
+            ? Storage::disk('public')->url($this->foto_profil)
+            : null;
     }
 }

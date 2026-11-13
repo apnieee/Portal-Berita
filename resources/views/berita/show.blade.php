@@ -211,18 +211,6 @@
     <div class="row g-5">
 
         <div class="col-lg-8">
-            <div class="d-flex justify-content-end mb-3">
-                <button
-                    type="button"
-                    class="theme-toggle"
-                    id="themeToggle"
-                    aria-label="Aktifkan mode gelap"
-                    title="Mode gelap"
-                >
-                    <i class="bi bi-moon"></i>
-                </button>
-            </div>
-
             @foreach($berita->kategoris as $kat)
                 <span class="news-category">
                     {{ $kat->nama_kategori }}

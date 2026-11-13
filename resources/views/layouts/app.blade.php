@@ -78,8 +78,8 @@
 
         @media (max-width: 768px) {
             .kwave-logo img {
-                height: 42px;
-                width: 42px;
+                height: 90px;
+                width: 90px;
             }
         }
 
@@ -251,11 +251,14 @@
 
         .news-category {
             display: inline-block;
-            color: var(--pink);
-            font-size: 12px;
+            padding: 5px 12px;
+            background: #fce7f3;
+            color: #e92e8b;
+            border-radius: 50px;
+            font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .news-title {
