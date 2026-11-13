@@ -603,6 +603,49 @@
         .dark-mode .navbar-toggler-icon {
             filter: invert(1);
         }
+        .btn-pink {
+            background-color: var(--pink);
+            border: 1px solid var(--pink);
+            color: white;
+            font-weight: 600;
+            padding: 10px 16px;
+        }
+        .btn-pink:hover {
+            background-color: #e52e89;
+            border-color: #e52e89;
+            color: white;
+        }
+        .btn-pink:focus {
+            box-shadow: 0 0 0 3px rgba(255, 63, 159, 0.25);
+        }
+        .dark-mode .form-label,
+        .dark-mode .form-check-label {
+            color: #eeeaf2;
+        }
+        .dark-mode .form-check-input {
+            background-color: #26222e;
+            border-color: #706779;
+        }
+        .dark-mode .form-check-input:checked {
+            background-color: var(--pink);
+            border-color: var(--pink);
+        }
+        .dark-mode .alert-danger {
+            background-color: #48252f;
+            border-color: #773747;
+            color: #ffc5d5;
+        }
+        .dark-mode .input-group .btn-outline-secondary {
+            color: #eeeaf2;
+            border-color: #554b60;
+        }
+        .dark-mode .input-group .btn-outline-secondary:hover {
+            background-color: #393040;
+            color: white;
+        }
+        .dark-mode .card a {
+            color: #ff79bb;
+        }
     </style>
 </head>
 
@@ -663,7 +706,6 @@
                     </button>
                 </form>
 
-                <!-- Tombol dark mode untuk semua pengguna -->
                 <button
                     type="button"
                     class="theme-toggle me-2"
