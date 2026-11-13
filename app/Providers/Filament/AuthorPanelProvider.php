@@ -18,7 +18,6 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use Filament\Navigation\NavigationItem;
 
 class AuthorPanelProvider extends PanelProvider
 {
@@ -34,12 +33,6 @@ class AuthorPanelProvider extends PanelProvider
             ->discoverPages(in: app_path('Filament/Author/Pages'), for: 'App\Filament\Author\Pages')
             ->pages([
                 Dashboard::class,
-            ])
-            ->navigationItems([
-                NavigationItem::make('Edit Profil')
-                    ->url('/profil')
-                    ->icon('heroicon-o-user-circle')
-                    ->sort(99),
             ])
             ->discoverWidgets(in: app_path('Filament/Author/Widgets'), for: 'App\Filament\Author\Widgets')
             ->widgets([

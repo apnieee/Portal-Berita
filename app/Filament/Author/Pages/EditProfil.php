@@ -20,6 +20,8 @@ class EditProfil extends Page implements HasSchemas
 
     protected string $view = 'filament.author.pages.edit-profil';
 
+    protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-user-circle';
+
     public ?array $data = [];
 
     public ?string $password_sekarang = null;
