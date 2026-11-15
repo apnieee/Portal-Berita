@@ -18,7 +18,7 @@ class RadarEventResource extends Resource
 {
     protected static ?string $model = RadarEvent::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedCalendarDays;
 
     protected static ?string $recordTitleAttribute = 'nama_event';
 
