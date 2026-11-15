@@ -757,18 +757,7 @@
                 <img src="{{ asset('images/logo-kwave.png') }}" alt="KWave">
             </a>
 
-            <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#kwaveNav"
-                aria-controls="kwaveNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="kwaveNav">
+            <div class="collapse navbar-collapse order-2 order-lg-1" id="kwaveNav">
                 <ul class="navbar-nav ms-lg-4 me-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('home') }}">
@@ -777,10 +766,10 @@
                     </li>
 
                     <li class="nav-item">
-                    <a class="nav-link" href="{{ route('dictionary.index') }}">
-                        Dictionary
-                    </a>
-                </li>
+                        <a class="nav-link" href="{{ route('dictionary.index') }}">
+                            Dictionary
+                        </a>
+                    </li>
 
                     @if(isset($kategoris))
                         @foreach($kategoris->take(5) as $kat)
@@ -811,7 +800,9 @@
                         Cari
                     </button>
                 </form>
+            </div>
 
+            <div class="d-flex align-items-center ms-auto order-1 order-lg-2">
                 <button
                     type="button"
                     class="theme-toggle me-2"
@@ -823,7 +814,6 @@
 
                 @auth
                     <div class="dropdown me-2">
-
                         <button
                             class="profile-avatar"
                             type="button"
@@ -840,11 +830,9 @@
                                     {{ strtoupper(substr(auth()->user()->nama, 0, 1)) }}
                                 </span>
                             @endif
-
                         </button>
 
                         <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-4 p-2">
-
                             <li class="px-3 py-2">
                                 <strong>{{ auth()->user()->nama }}</strong>
                                 <div class="small text-muted">
@@ -858,20 +846,15 @@
 
                             <li>
                                 @if(auth()->user()->role === 'admin')
-                                    <a class="dropdown-item rounded-3"
-                                    href="{{ url('/admin') }}">
+                                    <a class="dropdown-item rounded-3" href="{{ url('/admin') }}">
                                         Dashboard Admin
                                     </a>
-
                                 @elseif(auth()->user()->role === 'author')
-                                    <a class="dropdown-item rounded-3"
-                                    href="{{ url('/author') }}">
+                                    <a class="dropdown-item rounded-3" href="{{ url('/author') }}">
                                         Dashboard Author
                                     </a>
-
                                 @else
-                                    <a class="dropdown-item rounded-3"
-                                    href="{{ route('profile.edit') }}">
+                                    <a class="dropdown-item rounded-3" href="{{ route('profile.edit') }}">
                                         Edit Profil
                                     </a>
                                 @endif
@@ -887,19 +870,29 @@
                                     </button>
                                 </form>
                             </li>
-
                         </ul>
                     </div>
-
                 @else
-
-                    <a href="{{ route('login') }}" class="btn-login">
+                    <a href="{{ route('login') }}" class="btn-login me-2">
                         Login
                     </a>
                 @endauth
+
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#kwaveNav"
+                    aria-controls="kwaveNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
             </div>
         </div>
     </nav>
+
 
     <main class="container py-4">
         @yield('content')
