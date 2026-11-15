@@ -28,6 +28,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->brandName('KWave')
+            ->homeUrl(url('/'))
             ->login()
             ->authGuard('web')
             ->colors([
