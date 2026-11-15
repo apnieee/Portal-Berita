@@ -68,6 +68,67 @@
     </div>
 </div>
 
+@if($radarEvents->isNotEmpty())
+    <section class="mb-5">
+        <div class="d-flex justify-content-between align-items-end mb-3">
+            <div>
+                <span class="text-uppercase fw-bold"
+                      style="font-size:12px;letter-spacing:2px;color:#8b5cf6;">
+                    What's Coming?
+                </span>
+                <h2 class="section-title mb-1">KWave Radar</h2>
+                <p class="text-muted mb-0">
+                    Catat tanggal penting di dunia K-Pop.
+                </p>
+            </div>
+        </div>
+
+        <div class="row g-3">
+            @foreach($radarEvents as $event)
+                <div class="col-md-6 col-lg-4">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 p-3">
+                        <div class="d-flex align-items-center gap-3 mb-3">
+                            <div class="text-center rounded-3 p-2 radar-date">
+                                <div class="fw-bold fs-4 radar-date-number">
+                                    {{ $event->tanggal_event->format('d') }}
+                                </div>
+                                <small class="fw-semibold text-uppercase radar-date-month">
+                                    {{ $event->tanggal_event->format('M Y') }}
+                                </small>
+                            </div>
+                            <div>
+                                <span class="badge rounded-pill"
+                                      style="background:#eee5ff;color:#7541c8;">
+                                    {{ ucfirst($event->jenis_event) }}
+                                </span>
+                                <h5 class="fw-bold mt-2 mb-1">
+                                    {{ $event->nama_event }}
+                                </h5>
+                                <p class="text-muted small mb-0">
+                                    {{ $event->artis_grup }}
+                                </p>
+                            </div>
+                        </div>
+
+                        @if($event->lokasi)
+                            <p class="small text-muted mb-2">
+                                <i class="bi bi-geo-alt"></i>
+                                {{ $event->lokasi }}
+                            </p>
+                        @endif
+
+                        @if($event->deskripsi)
+                            <p class="small mb-0">
+                                {{ $event->deskripsi }}
+                            </p>
+                        @endif
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </section>
+@endif
+
 @if($keyword)
     <div class="mb-4">
         <p class="text-muted mb-1">Hasil pencarian untuk:</p>

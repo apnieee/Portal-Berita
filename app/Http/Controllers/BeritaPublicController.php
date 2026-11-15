@@ -7,6 +7,7 @@ use App\Models\Berita;
 use App\Models\Kategori;
 use App\Models\User;
 use App\Models\AuthorApplication;
+use App\Models\RadarEvent;
 use Illuminate\Http\Request;
 
 class BeritaPublicController extends Controller
@@ -42,6 +43,12 @@ class BeritaPublicController extends Controller
             ->take(5)
             ->get();
 
+        $radarEvents = RadarEvent::where('is_published', true)
+            ->whereDate('tanggal_event', '>=', now()->toDateString())
+            ->orderBy('tanggal_event', 'asc')
+            ->take(5)
+            ->get();
+
         // Menampilkan semua akun dengan role author
         $featuredAuthors = User::where('role', 'author')
             ->orderBy('nama')
@@ -62,6 +69,7 @@ class BeritaPublicController extends Controller
             'featuredAuthors',
             'myAuthorApplication',
             'keyword',
+            'radarEvents',
             'idKategori'
         ));
     }
