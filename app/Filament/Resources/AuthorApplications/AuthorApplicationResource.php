@@ -23,17 +23,17 @@ class AuthorApplicationResource extends Resource
 
     public static function getNavigationLabel(): string
     {
-        return 'Pengajuan Author';
+        return 'Pengajuan Penulis';
     }
 
     public static function getModelLabel(): string
     {
-        return 'Pengajuan Author';
+        return 'Pengajuan Penulis';
     }
 
     public static function getPluralModelLabel(): string
     {
-        return 'Pengajuan Author';
+        return 'Pengajuan Penulis';
     }
 
     public static function form(Schema $schema): Schema

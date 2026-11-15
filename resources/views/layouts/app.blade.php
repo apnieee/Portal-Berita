@@ -777,10 +777,10 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('dictionary.index') }}">
-                            Dictionary
-                        </a>
-                    </li>
+                    <a class="nav-link" href="{{ route('dictionary.index') }}">
+                        Dictionary
+                    </a>
+                </li>
 
                     @if(isset($kategoris))
                         @foreach($kategoris->take(5) as $kat)
@@ -822,89 +822,81 @@
                 </button>
 
                 @auth
+                    <div class="dropdown me-2">
 
-                    @if(auth()->user()->role === 'admin')
+                        <button
+                            class="profile-avatar"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            aria-label="Buka menu profil">
 
-                        <a href="{{ url('/admin') }}" class="btn-login me-2">
-                            Admin
-                        </a>
+                            @if(auth()->user()->foto_profil)
+                                <img
+                                    src="{{ asset('storage/' . auth()->user()->foto_profil) }}"
+                                    alt="Foto profil">
+                            @else
+                                <span>
+                                    {{ strtoupper(substr(auth()->user()->nama, 0, 1)) }}
+                                </span>
+                            @endif
 
-                    @elseif(auth()->user()->role === 'author')
+                        </button>
 
-                        <a href="{{ url('/author') }}" class="btn-login me-2">
-                            Dashboard Author
-                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-4 p-2">
 
-                    @else
+                            <li class="px-3 py-2">
+                                <strong>{{ auth()->user()->nama }}</strong>
+                                <div class="small text-muted">
+                                    {{ auth()->user()->email }}
+                                </div>
+                            </li>
 
-                        <div class="dropdown me-2">
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
 
-                            <button
-                                class="profile-avatar"
-                                type="button"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                                aria-label="Buka menu profil">
+                            <li>
+                                @if(auth()->user()->role === 'admin')
+                                    <a class="dropdown-item rounded-3"
+                                    href="{{ url('/admin') }}">
+                                        Dashboard Admin
+                                    </a>
 
-                                @if(auth()->user()->foto_profil)
-                                    <img
-                                        src="{{ asset('storage/' . auth()->user()->foto_profil) }}"
-                                        alt="Foto profil">
+                                @elseif(auth()->user()->role === 'author')
+                                    <a class="dropdown-item rounded-3"
+                                    href="{{ url('/author') }}">
+                                        Dashboard Author
+                                    </a>
+
                                 @else
-                                    <span>
-                                        {{ strtoupper(substr(auth()->user()->nama, 0, 1)) }}
-                                    </span>
-                                @endif
-
-                            </button>
-
-                            <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-4 p-2">
-
-                                <li class="px-3 py-2">
-                                    <strong>{{ auth()->user()->nama }}</strong>
-
-                                    <div class="small text-muted">
-                                        {{ auth()->user()->email }}
-                                    </div>
-                                </li>
-
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-
-                                <li>
-                                    <a
-                                        class="dropdown-item rounded-3"
-                                        href="{{ route('profile.edit') }}">
+                                    <a class="dropdown-item rounded-3"
+                                    href="{{ route('profile.edit') }}">
                                         Edit Profil
                                     </a>
-                                </li>
+                                @endif
+                            </li>
 
-                                <li>
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button
+                                        type="submit"
+                                        class="dropdown-item rounded-3 text-danger">
+                                        Logout
+                                    </button>
+                                </form>
+                            </li>
 
-                                        <button
-                                            type="submit"
-                                            class="dropdown-item rounded-3 text-danger">
-                                            Logout
-                                        </button>
-                                    </form>
-                                </li>
-
-                            </ul>
-                        </div>
-
-                    @endif
+                        </ul>
+                    </div>
 
                 @else
 
                     <a href="{{ route('login') }}" class="btn-login">
                         Login Sekarang
                     </a>
-
                 @endauth
-
             </div>
         </div>
     </nav>

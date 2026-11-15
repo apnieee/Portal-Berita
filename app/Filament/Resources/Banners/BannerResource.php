@@ -18,6 +18,7 @@ class BannerResource extends Resource
 {
     protected static ?string $model = Banner::class;
 
+    protected static ?string $navigationLabel = 'Banner';
     protected static ?string $modelLabel = 'Banner';
     protected static ?string $pluralModelLabel = 'Banner';
 

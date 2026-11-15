@@ -18,7 +18,7 @@ class DictionaryTermResource extends Resource
 {
     protected static ?string $model = DictionaryTerm::class;
     
-    protected static ?string $navigationLabel = 'K-Pop Dictionary';
+    protected static ?string $navigationLabel = 'Kamus K-Pop';
 
     protected static ?string $modelLabel = 'Istilah';
 
