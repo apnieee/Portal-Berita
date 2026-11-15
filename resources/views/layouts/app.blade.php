@@ -894,7 +894,7 @@
                 @else
 
                     <a href="{{ route('login') }}" class="btn-login">
-                        Login Sekarang
+                        Login
                     </a>
                 @endauth
             </div>
