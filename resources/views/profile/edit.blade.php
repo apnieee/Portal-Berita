@@ -42,7 +42,7 @@
                 @else
                     <div
                         class="rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center"
-                        style="width: 100px; height: 100px; background: #fce7f3; color: #ff3f9f; font-size: 32px; font-weight: bold;">
+                        style="width: 100px; height: 100px; background: var(--accent-soft); color: var(--accent-text); font-size: 32px; font-weight: bold;">
                         {{ strtoupper(substr($user->nama, 0, 1)) }}
                     </div>
                 @endif
@@ -121,7 +121,7 @@
                 <button
                     type="submit"
                     class="btn text-white w-100"
-                    style="background: #ff3f9f;">
+                    style="background: var(--pink);">
                     Simpan Perubahan
                 </button>
             </form>
@@ -220,7 +220,7 @@
                 <button
                     type="submit"
                     class="btn text-white w-100"
-                    style="background: #ff3f9f;">
+                    style="background: var(--pink);">
                     Ubah Kata Sandi
                 </button>
 

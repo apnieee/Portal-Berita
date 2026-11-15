@@ -6,23 +6,23 @@
 @section('content')
 
 <style>
-
     .author-profile-page {
         max-width: 1050px;
         margin: auto;
     }
 
     .author-hero {
-        background: var(--bs-body-bg);
-        border: 1px solid rgba(150, 130, 160, .15);
+        background: var(--surface);
+        color: var(--text);
+        border: 1px solid var(--border);
         border-radius: 14px;
         overflow: hidden;
-        box-shadow: 0 3px 12px rgba(0,0,0,.04);
+        box-shadow: var(--shadow);
     }
 
     .author-cover {
         height: 75px;
-        background: #ff3f9f;
+        background: linear-gradient(120deg, var(--pink), var(--purple));
     }
 
     .author-profile-content {
@@ -35,13 +35,17 @@
         width: 115px;
         height: 115px;
         border-radius: 50%;
-        border: 3px solid var(--bs-body-bg);
+        border: 3px solid var(--surface);
+    }
+
+    .author-profile-avatar {
+        object-fit: cover;
     }
 
     .author-profile-label {
         display: inline-block;
-        color: #d91b7d;
-        background: #ffe3f1;
+        color: var(--accent-text);
+        background: var(--accent-soft);
         padding: 7px 15px;
         border-radius: 6px;
         font-size: 12px;
@@ -52,31 +56,25 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        background: #ff3f9f;
+        background: var(--pink);
         color: white;
         font-size: 40px;
         font-weight: 700;
     }
 
     .author-profile-name {
+        color: var(--text);
         font-size: 26px;
         font-weight: 750;
         margin-top: 16px;
         margin-bottom: 8px;
     }
 
-    .author-profile-label {
-        display: inline-block;
-        color: #e52d89;
-        font-size: 12px;
-        font-weight: 700;
-    }
-
     .author-profile-bio {
         max-width: 620px;
         margin: 20px auto;
         line-height: 1.8;
-        color: var(--bs-secondary-color);
+        color: var(--muted);
     }
 
     .author-stat {
@@ -84,37 +82,41 @@
         min-width: 170px;
         margin-top: 10px;
         padding: 14px 25px;
-        background: #fff0f7;
+        background: var(--accent-soft);
+        border: 1px solid var(--border);
         border-radius: 10px;
     }
 
     .author-stat h3 {
-        color: #ff3f9f;
+        color: var(--accent-text);
         font-weight: 800;
         margin-bottom: 3px;
     }
 
     .author-news-heading {
+        color: var(--text);
         font-weight: 800;
         margin-bottom: 6px;
     }
 
     .author-news-subtitle {
-        color: var(--bs-secondary-color);
+        color: var(--muted);
         margin-bottom: 25px;
     }
 
     .author-news-card {
         height: 100%;
         overflow: hidden;
-        border: 1px solid rgba(150, 130, 160, .18);
+        border: 1px solid var(--border);
         border-radius: 12px;
-        background: var(--bs-body-bg);
-        transition: transform .2s ease;
+        background: var(--surface);
+        color: var(--text);
+        transition: transform .2s ease, box-shadow .2s ease;
     }
 
     .author-news-card:hover {
         transform: translateY(-3px);
+        box-shadow: var(--shadow);
     }
 
     .author-news-image,
@@ -131,20 +133,21 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #fce7f3;
-        color: #d63384;
+        background: var(--accent-soft);
+        color: var(--accent-text);
         font-size: 30px;
         font-weight: 800;
     }
 
     .author-news-title {
+        color: var(--text);
         font-size: 17px;
         font-weight: 700;
         line-height: 1.5;
     }
 
     .author-news-excerpt {
-        color: var(--bs-secondary-color);
+        color: var(--muted);
         font-size: 13px;
         line-height: 1.7;
     }
@@ -153,28 +156,17 @@
         display: inline-block;
         padding: 8px 15px;
         border-radius: 6px;
-        background: #ff3f9f;
+        background: var(--pink);
         color: white;
         text-decoration: none;
         font-size: 13px;
         font-weight: 600;
+        transition: background .2s ease;
     }
 
     .author-read-button:hover {
-        background: #e52d89;
+        background: var(--purple);
         color: white;
-    }
-
-    /* DARK MODE */
-    .dark-mode .author-hero,
-    .dark-mode .author-news-card {
-        background: #25212c;
-        border-color: #403847;
-    }
-
-    .dark-mode .author-news-placeholder {
-        background: #393040;
-        color: #ff79bb;
     }
 
     @media (max-width: 576px) {

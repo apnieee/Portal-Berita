@@ -25,7 +25,7 @@
 
                     <select
                         name="id_kategori"
-                        style="width:100%; padding:10px 12px; border-radius:8px; border:1px solid #52525b; background:#18181b; color:white;"
+                        class="laporan-filter-input"
                     >
                         <option value="">Semua Kategori</option>
 
@@ -45,7 +45,7 @@
                     <input
                         type="date"
                         name="dari"
-                        style="width:100%; padding:10px 12px; border-radius:8px; border:1px solid #52525b; background:#18181b; color:white;"
+                        class="laporan-filter-input"
                     >
                 </div>
 
@@ -57,7 +57,7 @@
                     <input
                         type="date"
                         name="sampai"
-                        style="width:100%; padding:10px 12px; border-radius:8px; border:1px solid #52525b; background:#18181b; color:white;"
+                        class="laporan-filter-input"
                     >
                 </div>
 
@@ -100,5 +100,22 @@
             window.open(url + '?' + params.toString(), '_blank');
         }
     </script>
-
 </x-filament-panels::page>
+
+@push('styles')
+<style>
+    .laporan-filter-input {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 8px;
+        border: 1px solid #71717a;
+        background: #27272a;
+        color: #ffffff;
+    }
+
+    .laporan-filter-input:focus {
+        outline: 2px solid #ff3f9f;
+        outline-offset: 1px;
+    }
+</style>
+@endpush

@@ -98,7 +98,7 @@
                             </div>
                             <div>
                                 <span class="badge rounded-pill"
-                                      style="background:#eee5ff;color:#7541c8;">
+                                      style="background:var(--accent-soft);color:var(--accent-text);">
                                     {{ ucfirst($event->jenis_event) }}
                                 </span>
                                 <h5 class="fw-bold mt-2 mb-1">

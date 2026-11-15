@@ -6,9 +6,47 @@
     <title>@yield('title', 'Admin - KWave')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .sidebar { min-height: 100vh; background:#1a1a2e; }
-        .sidebar a { color:#eee; display:block; padding:.6rem 1rem; text-decoration:none; }
-        .sidebar a:hover, .sidebar a.active { background:#ff2e88; }
+        :root {
+            --pink: #ff3f9f;
+            --purple: #8b5cf6;
+            --dark: #17121f;
+            --surface: #ffffff;
+            --text: #25202b;
+            --muted: #77717d;
+            --border: #eee8f2;
+        }
+
+        body {
+            background: #faf9fc;
+            color: var(--text);
+        }
+
+        .sidebar {
+            min-height: 100vh;
+            background: var(--dark);
+        }
+
+        .sidebar h5 {
+            border-bottom: 1px solid rgba(255,255,255,.12);
+        }
+
+        .sidebar a {
+            color: #eee;
+            display: block;
+            padding: .6rem 1rem;
+            text-decoration: none;
+            transition: background .2s ease;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: var(--pink);
+            color: white;
+        }
+
+        main {
+            min-width: 0;
+        }
     </style>
 </head>
 <body>
