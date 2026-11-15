@@ -8,6 +8,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
+use App\Models\JenisEvent;
 
 class RadarEventForm
 {
@@ -27,13 +28,13 @@ class RadarEventForm
 
                 Select::make('jenis_event')
                     ->label('Jenis Event')
-                    ->options([
-                        'comeback' => 'Comeback',
-                        'debut' => 'Debut',
-                        'concert' => 'Konser',
-                        'fanmeeting' => 'Fan Meeting',
-                        'other' => 'Lainnya',
-                    ])
+                    ->options(
+                        JenisEvent::query()
+                            ->orderBy('nama_jenis')
+                            ->pluck('nama_jenis', 'nama_jenis')
+                    )
+                    ->searchable()
+                    ->preload()
                     ->required(),
 
                 DatePicker::make('tanggal_event')

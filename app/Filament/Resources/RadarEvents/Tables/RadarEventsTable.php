@@ -33,7 +33,8 @@ class RadarEventsTable
                         'debut' => 'Debut',
                         'concert' => 'Konser',
                         'fanmeeting' => 'Fan Meeting',
-                        default => 'Lainnya',
+                        'other' => 'Lainnya',
+                        default => $state,
                     }),
 
                 TextColumn::make('tanggal_event')
