@@ -776,6 +776,12 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('dictionary.index') }}">
+                            Dictionary
+                        </a>
+                    </li>
+
                     @if(isset($kategoris))
                         @foreach($kategoris->take(5) as $kat)
                             <li class="nav-item">

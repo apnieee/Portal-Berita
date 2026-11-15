@@ -129,6 +129,54 @@
     </section>
 @endif
 
+@if($behindStories->isNotEmpty())
+    <section class="mb-5">
+        <div class="mb-3">
+            <span class="text-uppercase fw-bold"
+                  style="font-size:12px;letter-spacing:2px;color:var(--accent-text);">
+                More Than Headlines
+            </span>
+            <h2 class="section-title mb-1">Behind the Story</h2>
+            <p class="text-muted mb-0">
+                Melihat cerita di balik setiap momen.
+            </p>
+        </div>
+
+        <div class="row g-4">
+            @foreach($behindStories as $story)
+                <div class="col-md-6 col-lg-4">
+                    <article class="news-card h-100">
+                        @if($story->gambar)
+                            <img src="{{ asset('storage/' . $story->gambar) }}"
+                                 alt="{{ $story->judul }}">
+                        @else
+                            <div style="height:210px;background:linear-gradient(135deg,#17121f,#8b5cf6);display:flex;align-items:center;justify-content:center;color:white;font-size:24px;font-weight:bold;">
+                                Behind the Story
+                            </div>
+                        @endif
+
+                        <div class="news-card-body">
+                            <span class="news-category">Behind the Story</span>
+
+                            <h3>
+                                <a href="{{ route('berita.show', $story->id_berita) }}"
+                                   class="news-title">
+                                    {{ $story->judul }}
+                                </a>
+                            </h3>
+
+                            <div class="news-meta">
+                                {{ $story->tanggal?->translatedFormat('d M Y') }}
+                                · {{ $story->views }} views
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            @endforeach
+        </div>
+    </section>
+@endif
+
 @if($keyword)
     <div class="mb-4">
         <p class="text-muted mb-1">Hasil pencarian untuk:</p>

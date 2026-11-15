@@ -5,6 +5,7 @@ use App\Http\Controllers\BeritaPublicController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthorApplicationController;
+use App\Http\Controllers\DictionaryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\KategoriController;
 use App\Http\Controllers\Admin\BeritaController;
@@ -13,6 +14,13 @@ use App\Http\Controllers\Admin\LaporanController;
 
 //halaman utama
 Route::get('/', [BeritaPublicController::class, 'index'])->name('home');
+
+//kpop dictionary
+Route::get('/dictionary', [DictionaryController::class, 'index'])
+    ->name('dictionary.index');
+
+Route::get('/dictionary/{slug}', [DictionaryController::class, 'show'])
+    ->name('dictionary.show');
 
 //detail berita
 Route::get('/berita/{berita}', [BeritaPublicController::class, 'show'])->name('berita.show');

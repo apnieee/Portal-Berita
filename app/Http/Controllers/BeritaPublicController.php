@@ -49,6 +49,15 @@ class BeritaPublicController extends Controller
             ->take(5)
             ->get();
 
+        $behindStories = Berita::with(['kategoris', 'user'])
+            ->published()
+            ->whereHas('kategoris', function ($query) {
+                $query->where('nama_kategori', 'Behind the Story');
+            })
+            ->latest('tanggal')
+            ->take(3)
+            ->get();
+
         // Menampilkan semua akun dengan role author
         $featuredAuthors = User::where('role', 'author')
             ->orderBy('nama')
@@ -70,7 +79,8 @@ class BeritaPublicController extends Controller
             'myAuthorApplication',
             'keyword',
             'radarEvents',
-            'idKategori'
+            'idKategori',
+            'behindStories'
         ));
     }
 
