@@ -906,9 +906,7 @@
                         K<span>Wave</span>
                     </div>
                     <p class="footer-text mt-2">
-                        Portal berita K-Pop yang menghadirkan
-                        berbagai informasi terbaru seputar idol,
-                        musik, comeback, MV, dan K-Culture.
+                        Beyond the music, beyond the stage — a space where stories, connections, and shared moments find their place.
                     </p>
                 </div>
 
