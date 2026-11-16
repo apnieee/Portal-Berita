@@ -126,6 +126,9 @@ Portal-Berita/
 └── composer.json
 ```
 
+## Entity Relationship Diagram
+img src="images/homepage.png"
+
 ## Website
 
 **KWave:** https://kwave.web.id
