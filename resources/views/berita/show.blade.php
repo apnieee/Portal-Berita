@@ -119,10 +119,18 @@
     }
 
     .related-card a {
+        display: block;
+        padding: 14px 16px;
         text-decoration: none;
         color: var(--text);
         font-weight: 600;
-        line-height: 1.4;
+        line-height: 1.5;
+    }
+
+    .related-card .text-muted {
+        padding: 0 16px 12px;
+        margin-top: 4px !important;
+        display: block;
     }
 
     .back-button {
@@ -160,6 +168,16 @@
     .theme-toggle:hover {
         background: var(--accent-soft);
         color: var(--accent-text);
+    }
+
+    body.dark-mode .back-button {
+        color: #f8f9fa;
+        border-color: #adb5bd;
+    }
+
+    body.dark-mode .back-button:hover {
+        background-color: #f8f9fa;
+        color: #212529;
     }
 </style>
 

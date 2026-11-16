@@ -10,7 +10,7 @@
         <a href="{{ route('dictionary.index') }}"
            class="text-decoration-none"
            style="color:var(--accent-text);">
-            ← Back to Dictionary
+            ← Kembali Ke Kamus
         </a>
     </div>
 
@@ -28,7 +28,7 @@
 
         <div class="news-card p-4 p-md-5">
 
-            <h2 class="h5 fw-bold mb-3">What does it mean?</h2>
+            <h2 class="h5 fw-bold mb-3">Apa artinya?</h2>
 
             <p style="line-height:1.9;color:var(--text);">
                 {{ $term->meaning }}
@@ -37,7 +37,7 @@
             @if($term->example)
                 <hr style="border-color:var(--border);">
 
-                <h2 class="h5 fw-bold mb-3">Example</h2>
+                <h2 class="h5 fw-bold mb-3">Contoh Penggunaan</h2>
 
                 <p class="mb-0" style="line-height:1.9;color:var(--muted);">
                     {{ $term->example }}
