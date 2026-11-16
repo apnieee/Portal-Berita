@@ -9,7 +9,7 @@
     <div class="mb-5">
         <span class="text-uppercase fw-bold"
               style="font-size:12px;letter-spacing:2px;color:var(--accent-text);">
-            Explore the Culture
+            Jelajahi Budaya K-Pop
         </span>
 
         <h1 class="fw-bold mt-2">K-Pop Dictionary</h1>
