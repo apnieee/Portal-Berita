@@ -127,10 +127,9 @@ Portal-Berita/
 ```
 
 ## Entity Relationship Diagram
-img src="images/homepage.png"
+<img src="images/erd.png" width="800">
 
 ## Website
-
 **KWave:** https://kwave.web.id
 
 ## Developer
