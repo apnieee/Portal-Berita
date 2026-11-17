@@ -134,15 +134,22 @@ Portal-Berita/
 
 ## Tampilan Website
 ### halaman utama
-
 <img src="homepage 1.png" width="500"> <img src="homepage 2.png" width="500">
 <img src="homepage 3.png" width="500">
 
+### dictionary
+<img src="kamus.png" width="500">
+
 ### halaman login
-
 <img src="login.png" width="500">
-## Developer
 
+### dashboard admin
+<img src="dasbor admin.png" width="500">
+
+### dashboard author
+<img src="dasbor author" width="500">
+
+## Developer
 Developed by **apnieee**.
 
 ---
