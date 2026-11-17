@@ -133,12 +133,13 @@ Portal-Berita/
 **KWave:** https://kwave.web.id
 
 ## Tampilan Website
-halaman utama
-<img src="homepage 1.png" width="500"> 
-<img src="homepage 2.png" width="500">
+### halaman utama
+
+<img src="homepage 1.png" width="500"> <img src="homepage 2.png" width="500">
 <img src="homepage 3.png" width="500">
 
-halaman login
+### halaman login
+
 <img src="login.png" width="500">
 ## Developer
 
