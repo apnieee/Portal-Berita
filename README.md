@@ -147,7 +147,7 @@ Portal-Berita/
 <img src="dasbor admin.png" width="500">
 
 ### dashboard author
-<img src="dasbor author" width="500">
+<img src="dasbor author.png" width="500">
 
 ## Developer
 Developed by **apnieee**.
