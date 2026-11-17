@@ -132,6 +132,11 @@ Portal-Berita/
 ## Website
 **KWave:** https://kwave.web.id
 
+## Tampilan Website
+halaman utama
+<img src="homepage 1.png" width="500"> <img src="homepage 2.png" width="500">
+<img src="homepage 3.png" width="500">
+
 ## Developer
 
 Developed by **apnieee**.
