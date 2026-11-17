@@ -104,6 +104,40 @@ Pastikan PHP, Composer, Node.js, dan MySQL sudah terpasang.
 
 Buka alamat lokal yang ditampilkan oleh Laravel di browser.
 
+## Usage
+
+KWave dapat digunakan melalui website publik maupun dashboard berdasarkan hak akses masing-masing pengguna.
+
+### 1. Public Website
+1. Buka website KWave melalui browser.
+2. Pengunjung akan diarahkan ke halaman utama yang menampilkan berita terbaru.
+3. Pilih kategori untuk melihat berita berdasarkan topik.
+4. Gunakan fitur pencarian untuk menemukan berita tertentu.
+5. Klik salah satu berita untuk membaca detail dan isi berita.
+6. Kunjungi KWave Radar untuk melihat agenda dan acara mendatang.
+7. Buka K-Pop Dictionary untuk mencari istilah seputar dunia K-Pop.
+
+### 2. Admin
+1. Buka halaman login KWave.
+2. Masukkan email dan password akun Admin.
+3. Setelah berhasil login, pengguna akan diarahkan ke dashboard Admin.
+4. Pilih menu pengelolaan sesuai kebutuhan.
+5. Admin dapat menambah, melihat, mengedit, dan menghapus data berita maupun kategori.
+6. Admin juga dapat mengelola banner, KWave Radar, K-Pop Dictionary, dan data pengguna.
+7. Admin dapat mengelola status publikasi berita serta mengunduh laporan dalam format PDF dan Excel.
+
+### 3. Author
+1. Buka halaman login KWave.
+2. Masukkan email dan password akun Author.
+3. Setelah berhasil login, pengguna akan diarahkan ke dashboard Author.
+4. Buat berita baru melalui formulir yang tersedia.
+5. Berita yang dibuat akan tersimpan dengan status Draft.
+6. Author dapat melihat dan mengedit berita yang telah dibuat.
+7. Publikasi berita dilakukan oleh Admin.
+
+### 4. User
+Pengunjung dapat mengakses halaman publik KWave untuk membaca berita, menjelajahi kategori, melihat agenda, dan menggunakan K-Pop Dictionary.
+
 ## Project Structure
 
 ```text
