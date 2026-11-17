@@ -1,4 +1,4 @@
-# KWave — K-Pop News Portal
+<img width="378" height="544" alt="image" src="https://github.com/user-attachments/assets/aa689139-7692-4e6e-92ea-0256ec002079" /># KWave — K-Pop News Portal
 
 **More Than Music, A Place to Belong.**
 
@@ -162,6 +162,10 @@ Portal-Berita/
 
 ## Entity Relationship Diagram
 <img src="erd.png" width="500">
+
+## Flowchart
+<img src="flowchart.png" width="500">
+
 
 ## Website
 **KWave:** https://kwave.web.id
