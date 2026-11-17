@@ -134,9 +134,12 @@ Portal-Berita/
 
 ## Tampilan Website
 halaman utama
-<img src="homepage 1.png" width="500"> <img src="homepage 2.png" width="500">
+<img src="homepage 1.png" width="500"> 
+<img src="homepage 2.png" width="500">
 <img src="homepage 3.png" width="500">
 
+halaman login
+<img src="login.png" width="500">
 ## Developer
 
 Developed by **apnieee**.
